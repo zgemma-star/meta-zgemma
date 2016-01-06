@@ -2,7 +2,7 @@ DESCRIPTION = "VFD Control"
 LICENSE = "GPLv2"
 
 require conf/license/openpli-gplv2.inc
-COMPATIBLE_MACHINE = "(sh1|h3|h5|lc)"
+COMPATIBLE_MACHINE = "(sh1|h3|h4|h5|lc)"
 
 SRC_URI = "file://__init__.py \
 	file://plugin.py \
