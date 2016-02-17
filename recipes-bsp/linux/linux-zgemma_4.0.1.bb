@@ -4,7 +4,7 @@ LICENSE = "GPLv2"
 
 KERNEL_RELEASE = "4.0.1"
 COMPATIBLE_MACHINE = "(sh1|h3|h4|h5|lc|i55)"
-MACHINE_KERNEL_PR_append = ".0"
+MACHINE_KERNEL_PR_append = ".1"
 
 SRC_URI[md5sum] = "c274792d088cd7bbfe7fe5a76bd798d8"
 SRC_URI[sha256sum] = "6fd63aedd69b3b3b28554cabf71a9efcf05f10758db3d5b99cfb0580e3cde24c"
@@ -26,6 +26,7 @@ SRC_URI += "http://www.zgemma.org/downloads/linux-${PV}.tar.gz \
 	file://0001-bcmgenet.patch \
 	file://0002-add-brcm-chips.patch \
 	file://0003-nand-ecc-strength-and-bitflip.patch \
+	file://sdio-pinmux.patch \
 	"
 
 inherit kernel machine_kernel_pr
