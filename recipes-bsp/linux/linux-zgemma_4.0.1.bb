@@ -3,7 +3,7 @@ SECTION = "kernel"
 LICENSE = "GPLv2"
 
 KERNEL_RELEASE = "4.0.1"
-COMPATIBLE_MACHINE = "(sh1|h3|h4|h5|lc|i55)"
+COMPATIBLE_MACHINE = "(sh1|h3|h4|h5|h6|lc|i55)"
 MACHINE_KERNEL_PR_append = ".1"
 
 SRC_URI[md5sum] = "c274792d088cd7bbfe7fe5a76bd798d8"
@@ -26,6 +26,8 @@ SRC_URI += "http://www.zgemma.org/downloads/linux-${PV}.tar.gz \
 	file://0001-bcmgenet.patch \
 	file://0002-add-brcm-chips.patch \
 	file://0003-nand-ecc-strength-and-bitflip.patch \
+	file://0001-3.17-fix-cpu-probe-disable-RIXIEX-check-on-BCM7584.patch \
+	file://kernel-gcc6.patch \
 	file://sdio-pinmux.patch \
 	"
 
@@ -36,6 +38,7 @@ S = "${WORKDIR}/linux-${PV}"
 export OS = "Linux"
 KERNEL_OBJECT_SUFFIX = "ko"
 KERNEL_OUTPUT = "vmlinux"
+KERNEL_OUTPUT_DIR = "."
 KERNEL_IMAGETYPE = "vmlinux"
 KERNEL_IMAGEDEST = "/boot"
 
