@@ -40,16 +40,17 @@ IMAGE_FSTYPES ?= "ubi"
 UBI_VOLNAME = "rootfs"
 
 IMAGEDIR ?= "zgemma/${MACHINE}"
+IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
 
 IMAGE_CMD_ubi_append = " \
-	mkdir -p ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}; \
-	cp ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ubi ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/rootfs.bin; \
-	gzip -9c ${DEPLOY_DIR_IMAGE}/vmlinux-${MACHINE}.bin > ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/kernel.bin; \
-	echo ${IMAGEVERSION} > ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/imageversion; \
-	echo "rename this file to 'force' to force an update without confirmation" > ${DEPLOY_DIR_IMAGE}/${IMAGEDIR}/noforce; \
-	cd ${DEPLOY_DIR_IMAGE}; \
+	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}; \
+	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.ubi ${IMGDEPLOYDIR}/${IMAGEDIR}/rootfs.bin; \
+	gzip -9c ${DEPLOY_DIR_IMAGE}/vmlinux-${MACHINE}.bin > ${IMGDEPLOYDIR}/${IMAGEDIR}/kernel.bin; \
+	echo ${IMAGEVERSION} > ${IMGDEPLOYDIR}/${IMAGEDIR}/imageversion; \
+	echo "rename this file to 'force' to force an update without confirmation" > ${IMGDEPLOYDIR}/${IMAGEDIR}/noforce; \
+	cd ${IMGDEPLOYDIR}; \
 	zip ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_usb.zip ${IMAGEDIR}/*; \
 	rm -Rf zgemma; \
 	"
