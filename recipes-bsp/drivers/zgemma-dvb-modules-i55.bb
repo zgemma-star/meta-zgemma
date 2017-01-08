@@ -1,9 +1,9 @@
 KV = "4.0.1"
-SRCDATE = "20160916"
+SRCDATE = "20161230"
 
 require zgemma-dvb-modules.inc
 
-SRC_URI[md5sum] = "47ee354039fb81231b43fac27acebafd"
-SRC_URI[sha256sum] = "a0191c3b82ed41b1a401a4263e2a3d447e1bc07225ae76d14d4d52fc26fc747a"
+SRC_URI[md5sum] = "e9891d8f93e0c5b36bc0ed8a0bc41811"
+SRC_URI[sha256sum] = "646db8f110bd219243dceac37d9a4fa5c510b4dcecaeed88fd02b509e22478fe"
 
 COMPATIBLE_MACHINE = "i55"
