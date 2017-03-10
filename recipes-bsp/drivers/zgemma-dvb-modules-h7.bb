@@ -1,0 +1,9 @@
+KV = "4.1.35"
+SRCDATE = "20170226"
+
+require zgemma-dvb-modules.inc
+
+SRC_URI[md5sum] = "2d11040ff515ff6e478def6ab86700a8"
+SRC_URI[sha256sum] = "ded890681c39919f56837c732dc2c00fb31067513feb8474b533e11b8b458525"
+
+COMPATIBLE_MACHINE = "h7"

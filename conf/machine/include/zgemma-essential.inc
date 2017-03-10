@@ -1,4 +1,8 @@
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += " \
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "zgemma-dvb-modules-${MACHINE}"
+
+MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
+	kernel-module-cdfs \
+	\
 	firmware-carl9170 \
 	firmware-htc7010 \
 	firmware-htc9271 \
