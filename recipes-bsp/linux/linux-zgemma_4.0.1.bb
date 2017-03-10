@@ -16,6 +16,7 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/linux-${PV}/COPYING;md5=d7810fab7487fb0aad
 
 SRC_URI += "http://www.zgemma.org/downloads/linux-${PV}.tar.gz \
 	file://defconfig \
+	"
 
 SRC_URI_append_mipsel = " \
 	file://add-dmx-source-timecode.patch \
