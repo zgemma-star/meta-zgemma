@@ -14,7 +14,7 @@ SRC_URI[mips.sha256sum] = "6fd63aedd69b3b3b28554cabf71a9efcf05f10758db3d5b99cfb0
 
 LIC_FILES_CHKSUM = "file://${WORKDIR}/linux-${PV}/COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-SRC_URI += "http://www.zgemma.org/downloads/linux-${PV}.tar.gz \
+SRC_URI += "http://www.zgemma.org/downloads/linux-${PV}.tar.gz;name=${ARCH} \
 	file://defconfig \
 	"
 
