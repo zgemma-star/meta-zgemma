@@ -1,5 +1,3 @@
-PREFERRED_VERSION_linux-zgemma = "4.1.35"
-
 IMAGE_CLASSES += "zgemma-emmc_image_multi"
 IMAGE_FSTYPES += "zgemma-emmc"
 IMAGE_ROOTFS_SIZE ?= "294912"
