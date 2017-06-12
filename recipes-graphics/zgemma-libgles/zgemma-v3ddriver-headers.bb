@@ -12,7 +12,6 @@ do_compile() {
 
 do_install_append() {
 	install -d ${D}/${includedir}
-	install -m 0644 ${S}/v3dplatform.h ${D}${includedir}/
 	for d in EGL GLES GLES2 GLES3 KHR; do
 		install -d ${D}${includedir}/$d
 		for f in ${S}/$d/*.h; do
