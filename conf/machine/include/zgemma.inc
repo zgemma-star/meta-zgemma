@@ -34,7 +34,7 @@ IMAGE_CMD_zgemma-emmc_append_arm = "\
 	cd ${IMAGE_ROOTFS}; \
 	tar -cvf ${IMGDEPLOYDIR}/${IMAGEDIR}/rootfs.tar -C ${IMAGE_ROOTFS} .; \
 	bzip2 -f ${IMGDEPLOYDIR}/${IMAGEDIR}/rootfs.tar; \
-	cp ${IMAGE_ROOTFS}/tmp/zImage ${IMGDEPLOYDIR}/${IMAGEDIR}/kernel.bin; \
+	cp ${DEPLOY_DIR_IMAGE}/zImage ${IMGDEPLOYDIR}/${IMAGEDIR}/kernel.bin; \
 	cd ${IMGDEPLOYDIR}; \
 	zip ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_usb.zip ${IMAGEDIR}/disk.img ${IMAGEDIR}/imageversion; \
 	zip ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_multiboot_ofgwrite.zip ${IMAGEDIR}/imageversion ${IMAGEDIR}/kernel.bin ${IMAGEDIR}/rootfs.tar.bz2; \
