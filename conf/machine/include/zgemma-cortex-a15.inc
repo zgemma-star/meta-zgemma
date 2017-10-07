@@ -1,5 +1,5 @@
 IMAGE_CLASSES += "zgemma-emmc_image_multi"
-IMAGE_FSTYPES += "zgemma-emmc"
+IMAGE_FSTYPES += "zgemma-emmc tar.bz2"
 IMAGE_ROOTFS_SIZE ?= "294912"
 
 TARGET_ARCH = "arm"
