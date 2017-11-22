@@ -3,10 +3,9 @@ SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
 
-PV = "${KV}+${SRCDATE}"
-PR = "r0"
+PV = "${KV}-${SRCDATE}"
 
-SRC_URI = "http://www.zgemma.org/downloads/${MACHINE}-drivers-${KV}-${SRCDATE}.zip"
+SRC_URI = "http://www.zgemma.org/downloads/${MACHINE}-drivers-${PV}.zip"
 
 S = "${WORKDIR}"
 

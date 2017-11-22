@@ -1,9 +1,9 @@
 DESCRIPTION = "libgles v3ddriver headers"
 LICENSE = "CLOSED"
 
-PR = "r0"
+PR = "r1"
 
-SRC_URI = "file://zgemma-v3ddriver-headers.zip"
+SRC_URI = "file://libgles-headers.zip"
 
 S = "${WORKDIR}"
 
