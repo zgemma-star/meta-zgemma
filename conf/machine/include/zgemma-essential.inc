@@ -1,9 +1,13 @@
-MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "zgemma-dvb-modules-${MACHINE}"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
+	zgemma-dvb-modules-${MACHINE} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'hisil', 'zgemma-libs-${MACHINE}' , '', d)} \
+	"
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-cdfs \
 	\
 	${@bb.utils.contains('MACHINE_FEATURES', 'v3d-nxpl', 'zgemma-v3ddriver-${MACHINE}' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'zgemma-mali-${MACHINE}' , '', d)} \
 	\
 	firmware-carl9170 \
 	firmware-htc7010 \

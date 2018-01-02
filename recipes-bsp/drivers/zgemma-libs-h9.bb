@@ -1,0 +1,8 @@
+SRCDATE = "20171222"
+
+require zgemma-libs.inc
+
+SRC_URI[md5sum] = "01234564789abcdef01234564789abcdef"
+SRC_URI[sha256sum] = "01234564789abcdef01234564789abcdef01234564789abcdef1234564789abcdef"
+
+COMPATIBLE_MACHINE = "h9"
