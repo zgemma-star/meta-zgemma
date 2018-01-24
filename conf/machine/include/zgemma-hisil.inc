@@ -23,8 +23,11 @@ EXTRA_OECONF_append_pn-enigma2 = " --with-fbdev=/dev/fb0 --with-lcddev=/dev/null
 # IMAGE_INSTALL_append = " qtbase-examples"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
+	gst-plugin-dvbmediasink \
 	ntfs-3g \
 	"
+
+DVBMEDIASINK_CONFIG = "--with-h265 --with-vb8 --with-vb9 --with-wma --with-wmv --with-pcm --with-dts --with-eac3"
 
 MACHINE_FEATURES += "alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
 
