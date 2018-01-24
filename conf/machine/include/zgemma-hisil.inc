@@ -39,8 +39,8 @@ IMAGE_CMD_ubi_append = " \
 	cp ${DEPLOY_DIR_IMAGE}/uImage ${IMGDEPLOYDIR}/${IMAGEDIR}/uImage; \
 	cp ${DEPLOY_DIR_IMAGE}/fastboot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/fastboot.bin; \
 	cp ${DEPLOY_DIR_IMAGE}/pq_param.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/pq_param.bin; \
-	cp ${DEPLOY_DIR_IMAGE}/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/bootargs_nand.bin; \
-	cp ${DEPLOY_DIR_IMAGE}/bootargs-usb.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/bootargs.bin; \
+	cp ${DEPLOY_DIR_IMAGE}/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/bootargs.bin; \
+	cp ${DEPLOY_DIR_IMAGE}/bootargs_flash.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/bootargs_flash.bin; \
 	cp ${DEPLOY_DIR_IMAGE}/baseparam.img ${IMGDEPLOYDIR}/${IMAGEDIR}/baseparam.img; \
 	cp ${DEPLOY_DIR_IMAGE}/logo.img ${IMGDEPLOYDIR}/${IMAGEDIR}/logo.img; \
 	echo "${IMAGEVERSION}" > ${IMGDEPLOYDIR}/${IMAGEDIR}/imageversion; \
