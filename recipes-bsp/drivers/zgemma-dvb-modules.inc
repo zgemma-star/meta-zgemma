@@ -26,3 +26,11 @@ do_install() {
 		echo $i >> ${D}/${sysconfdir}/modules-load.d/_${MACHINE}.conf
 	done
 }
+
+pkg_prerm() {
+	if [ "x$D" == "x" ]; then
+		if [ -f /lib/modules/${KV}/extra/hi_play.ko ] ; then
+			rm -f /lib/modules/${KV}/extra/hi_play.ko;
+		fi
+	fi
+}

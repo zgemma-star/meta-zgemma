@@ -11,25 +11,24 @@ PREFERRED_PROVIDER_virtual/egl ?= "zgemma-mali-${MACHINE}"
 PREFERRED_PROVIDER_virtual/libgles1 ?= "zgemma-mali-${MACHINE}"
 PREFERRED_PROVIDER_virtual/libgles2 ?= "zgemma-mali-${MACHINE}"
 PREFERRED_PROVIDER_virtual/libopencl ?= "zgemma-mali-${MACHINE}"
+PREFERRED_PROVIDER_virtual/blindscan-dvbc ?= "zgemma-dvb-modules-${MACHINE}"
+PREFERRED_PROVIDER_virtual/blindscan-dvbs ?= "zgemma-dvb-modules-${MACHINE}"
 
 require conf/machine/include/tune-cortexa15.inc
 require conf/machine/include/zgemma-essential.inc
 
-PACKAGECONFIG_GL_pn-qtbase = " gles2 eglfs linuxfb"
-EXTRA_OECONF_append_pn-kodi = " --with-gpu=mali"
-EXTRA_OECONF_append_pn-enigma2 = " --with-fbdev=/dev/fb0 --with-lcddev=/dev/null"
-
-# PACKAGECONFIG_append_pn-qtbase = " examples"
-# IMAGE_INSTALL_append = " qtbase-examples"
+PACKAGECONFIG_GL_pn-qtbase += " gles2 eglfs linuxfb"
+EXTRA_OECONF_append_pn-kodi += " --with-gpu=mali"
+EXTRA_OECONF_append_pn-enigma2 += " --with-fbdev=/dev/fb0 --with-lcddev=/dev/null"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
 	gst-plugin-dvbmediasink \
 	ntfs-3g \
 	"
 
-DVBMEDIASINK_CONFIG = "--with-h265 --with-vb8 --with-vb9 --with-wma --with-wmv --with-pcm --with-dts --with-eac3"
+DVBMEDIASINK_CONFIG += " --with-h265 --with-vb8 --with-vb9 --with-wma --with-wmv --with-pcm --with-dts --with-eac3"
 
-MACHINE_FEATURES += "alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
+MACHINE_FEATURES += " alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
 
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
@@ -53,6 +52,6 @@ IMAGE_CMD_ubi_append = " \
 		echo "rename this file to 'force' to force an update without confirmation" > ${IMGDEPLOYDIR}/${IMAGEDIR}/noforce; \
 	fi; \
 	cd ${IMGDEPLOYDIR}; \
-	zip ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_usb.zip ${IMAGEDIR}/*; \
+	zip -j ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_usb.zip ${IMAGEDIR}/*; \
 	rm -Rf ${IMAGEDIR}; \
 	"

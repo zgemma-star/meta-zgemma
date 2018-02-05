@@ -1,6 +1,8 @@
 KV = "4.4.35"
 SRCDATE = "20180123"
 
+PROVIDES += " virtual/blindscan-dvbc virtual/blindscan-dvbs"
+
 require zgemma-dvb-modules.inc
 
 SRC_URI[md5sum] = "1bb2b0d07c6cd54515187642eb6b9fdb"
