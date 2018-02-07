@@ -27,7 +27,7 @@ do_install() {
 	done
 }
 
-pkg_prerm() {
+pkg_prerm_${PN}() {
 	if [ "x$D" == "x" ]; then
 		if [ -f /lib/modules/${KV}/extra/hi_play.ko ] ; then
 			rm -f /lib/modules/${KV}/extra/hi_play.ko;
