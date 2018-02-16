@@ -4,23 +4,28 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
 KERNEL_RELEASE = "4.4.35"
+SRCDATE = "20180214"
 COMPATIBLE_MACHINE = "(h9|h10)"
 
 inherit kernel machine_kernel_pr
 
-SRC_URI[arm.md5sum] = "ea9854b98b10b6d1a6c82dd4bb32fd62"
-SRC_URI[arm.sha256sum] = "f56276a3cd8c844741b74d4dea3853cf06bfd4520d6c9d7f9a384673cb6a0d32"
+SRC_URI[arm.md5sum] = "bb368255800be3d3d7cfa2710928fe9c"
+SRC_URI[arm.sha256sum] = "3dd7e7a99f70f0be8b725e4628f243c3aa1d42072a32e4a4b5268f69b535fc1d"
+SRC_URI[part.md5sum] = "850782d98b18406fed30a7b592a45a21"
+SRC_URI[part.sha256sum] = "2e632ce9817eab5c7977f8a259bf5b854045ff189ebef3a6641968c946ba83cc"
 
-SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${ARCH}.tar.gz;name=${ARCH} \
+SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz;name=${ARCH} \
+	http://www.zgemma.org/downloads/${MACHINE}-partitions_20180120.zip;name=part \
 	file://defconfig \
 "
 
-SRC_URI_append += " \
-	http://www.zgemma.org/downloads/${MACHINE}-partitions_20180120.zip;name=part \
-"
-
-SRC_URI[part.md5sum] = "850782d98b18406fed30a7b592a45a21"
-SRC_URI[part.sha256sum] = "2e632ce9817eab5c7977f8a259bf5b854045ff189ebef3a6641968c946ba83cc"
+# By default, kernel.bbclass modifies package names to allow multiple kernels
+# to be installed in parallel. We revert this change and rprovide the versioned
+# package names instead, to allow only one kernel to be installed.
+PKG_kernel-base = "kernel-base"
+PKG_kernel-image = "kernel-image"
+RPROVIDES_kernel-base = "kernel-${KERNEL_VERSION}"
+RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
 S = "${WORKDIR}/linux-${PV}"
 
@@ -33,11 +38,6 @@ KERNEL_OUTPUT = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 FILES_kernel-image = "/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}"
 
 kernel_do_install() {
-	install -d ${D}${KERNEL_IMAGEDEST}
-	install -m 0755 ${KERNEL_OUTPUT} ${D}${KERNEL_IMAGEDEST}
-}
-
-kernel_do_install_append() {
 	install -d ${DEPLOY_DIR_IMAGE}
 	install -m 0755 ${WORKDIR}/fastboot.bin ${DEPLOY_DIR_IMAGE}
 	install -m 0755 ${WORKDIR}/pq_param.bin ${DEPLOY_DIR_IMAGE}
@@ -45,6 +45,11 @@ kernel_do_install_append() {
 	install -m 0755 ${WORKDIR}/bootargs_flash.bin ${DEPLOY_DIR_IMAGE}
 	install -m 0755 ${WORKDIR}/baseparam.img ${DEPLOY_DIR_IMAGE}
 	install -m 0755 ${WORKDIR}/logo.img ${DEPLOY_DIR_IMAGE}
+}
+
+kernel_do_install_append() {
+	install -d ${D}${KERNEL_IMAGEDEST}
+	install -m 0755 ${KERNEL_OUTPUT} ${D}${KERNEL_IMAGEDEST}
 }
 
 pkg_postinst_kernel-image() {
