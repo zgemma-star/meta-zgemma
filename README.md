@@ -4,7 +4,7 @@ BSP layer for Zgemma Star models
 *** Setup your build system *** <br />
 Install ubuntu/kubuntu 16.04 64bit <br />
 To build an AOSP or E2 images you'll need to install the follow packages: <br />
-sudo apt install openjdk-8-jdk m4 lib32stdc++6 curl git subversion chrpath gawk g++ texinfo repo <br />
+sudo apt install openjdk-8-jdk m4 lib32stdc++6 curl git subversion chrpath gawk g++ texinfo repo android-tools-fsutils <br />
 
 *** How to build E2 image *** <br />
 example: Openpli image for model H9 <br />
