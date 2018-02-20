@@ -31,26 +31,41 @@ MACHINE_FEATURES += " alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
 
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
-IMAGEDIR ?= "zgemma/${MACHINE}"
+IMAGEDIR ?= "zgemma"
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 
 IMAGE_CMD_ubi_append = " \
-	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}; \
-	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.ubi ${IMGDEPLOYDIR}/${IMAGEDIR}/rootfs.ubi; \
-	cp ${DEPLOY_DIR_IMAGE}/uImage ${IMGDEPLOYDIR}/${IMAGEDIR}/uImage; \
-	cp ${DEPLOY_DIR_IMAGE}/fastboot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/fastboot.bin; \
-	cp ${DEPLOY_DIR_IMAGE}/pq_param.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/pq_param.bin; \
-	cp ${DEPLOY_DIR_IMAGE}/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/bootargs.bin; \
-	cp ${DEPLOY_DIR_IMAGE}/bootargs_flash.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/bootargs_flash.bin; \
-	cp ${DEPLOY_DIR_IMAGE}/baseparam.img ${IMGDEPLOYDIR}/${IMAGEDIR}/baseparam.img; \
-	cp ${DEPLOY_DIR_IMAGE}/logo.img ${IMGDEPLOYDIR}/${IMAGEDIR}/logo.img; \
+	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.ubi ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/rootfs.ubi; \
+	cp ${DEPLOY_DIR_IMAGE}/uImage ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/uImage; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/fastboot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/fastboot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/pq_param.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/baseparam.img ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/logo.img ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
 	echo "${IMAGEVERSION}" > ${IMGDEPLOYDIR}/${IMAGEDIR}/imageversion; \
-	if [ "${FORCE}" = "yes" ]; then \
-		echo "rename this file to 'noforce' to force an update with confirmation" > ${IMGDEPLOYDIR}/${IMAGEDIR}/force; \
-	else \
-		echo "rename this file to 'force' to force an update without confirmation" > ${IMGDEPLOYDIR}/${IMAGEDIR}/noforce; \
-	fi; \
-	cd ${IMGDEPLOYDIR}; \
-	zip -j ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_usb.zip ${IMAGEDIR}/*; \
+	cd ${IMGDEPLOYDIR}/${IMAGEDIR}; \
+	zip -r ../${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_usb.zip *; \
+	cd ..; \
+	rm -Rf ${IMAGEDIR}; \
+	"
+
+IMAGE_CMD_fastboot_append = " \
+	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.fastboot.gz ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/rootfs.fastboot.gz; \
+	cp ${DEPLOY_DIR_IMAGE}/uImage ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/uImage; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/fastboot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/fastboot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/pq_param.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/baseparam.img ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/logo.img ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	echo "${IMAGEVERSION}" > ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/imageversion; \
+	cd ${IMGDEPLOYDIR}/${IMAGEDIR}; \
+	zip -r ../${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_emmc.zip *; \
+	cd ..; \
 	rm -Rf ${IMAGEDIR}; \
 	"

@@ -1,6 +1,6 @@
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
 	zgemma-dvb-modules-${MACHINE} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'hisil', 'zgemma-libs-${MACHINE}' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'hisil', 'zgemma-libs-${MACHINE} zgemma-partitions-${MACHINE}' , '', d)} \
 	"
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
