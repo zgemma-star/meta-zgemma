@@ -5,7 +5,7 @@ LICENSE = "CLOSED"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 DEPENDS = "zlib libpng freetype curl libxml2 libjpeg-turbo harfbuzz"
 
-SRC_URI = "http://www.zgemma.org/downloads/${MACHINE}-libs-${SRCDATE}.tar.gz"
+SRC_URI = "http://www.zgemma.org/downloads/${MACHINE}-libs-${SRCDATE}.zip"
 
 S = "${WORKDIR}"
 
