@@ -4,7 +4,8 @@ PRIORITY = "required"
 LICENSE = "CLOSED"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-PROVIDES += " virtual/libgles2 virtual/libgles1 virtual/egl virtual/libopencl"
+PROVIDES = "virtual/libgles2 virtual/libgles1 virtual/egl virtual/libopencl"
+
 DEPENDS = "zgemma-mali-headers"
 
 SRCDATE = "20171106"
@@ -42,5 +43,7 @@ do_install_append() {
 
 FILES_${PN} = "/usr/lib/* /etc/udev/rules.d/50-mali.rules"
 FILES_${PN}-dev = "/usr/include/*"
+
+RPROVIDES_${PN} = "libmali.so libEGL.so libGLESv1_CM.so libGLESv2.so virtual/libgles2 virtual/libgles1 virtual/egl virtual/libopencl"
 
 INSANE_SKIP_${PN} += "already-stripped dev-so ldflags"
