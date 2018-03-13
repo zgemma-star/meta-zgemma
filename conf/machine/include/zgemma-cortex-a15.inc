@@ -16,9 +16,6 @@ require conf/machine/include/zgemma-essential.inc
 PACKAGECONFIG_GL_pn-qtbase = " gles2 linuxfb"
 EXTRA_OECONF_append_pn-kodi = " --with-gpu=v3d"
 
-# PACKAGECONFIG_append_pn-qtbase = " examples"
-# IMAGE_INSTALL_append = " qtbase-examples"
-
 MACHINE_EXTRA_RRECOMMENDS = " \
 	gst-plugin-dvbmediasink \
 	ntfs-3g \
@@ -33,7 +30,7 @@ IMAGEVERSION[vardepsexclude] = "DATE"
 IMAGEDIR ?= "zgemma/${MACHINE}"
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 
-IMAGE_CMD_zgemma-emmc_append = "\
+IMAGE_CMD_zgemmc_append = "\
 	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}; \
 	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}.emmc.img ${IMGDEPLOYDIR}/${IMAGEDIR}/disk.img; \
 	echo "${IMAGEVERSION}" > ${IMGDEPLOYDIR}/${IMAGEDIR}/imageversion; \

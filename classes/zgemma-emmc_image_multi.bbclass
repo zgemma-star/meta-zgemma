@@ -1,12 +1,12 @@
 inherit image_types
 
-IMAGE_TYPEDEP_zgemma-emmc = "ext4"
+IMAGE_TYPEDEP_zgemmc = "ext4"
 
-IMAGE_DEPENDS_zgemma-emmc = " \
-    parted-native \
-    dosfstools-native \
-    mtools-native \
-    virtual/kernel \
+do_image_zgemmc[depends] = " \
+    parted-native:do_populate_sysroot \
+    dosfstools-native:do_populate_sysroot \
+    mtools-native:do_populate_sysroot \
+    virtual/kernel:do_deploy \
     "
 
 GPT_OFFSET = "0"
@@ -40,7 +40,7 @@ SWAP_PARTITION_OFFSET = "$(expr ${FOURTH_ROOTFS_PARTITION_OFFSET} \+ ${ROOTFS_PA
 EMMC_IMAGE = "${IMGDEPLOYDIR}/${IMAGE_NAME}.emmc.img"
 EMMC_IMAGE_SIZE = "3817472"
 
-IMAGE_CMD_zgemma-emmc () {
+IMAGE_CMD_zgemmc () {
     dd if=/dev/zero of=${EMMC_IMAGE} bs=${BLOCK_SIZE} count=0 seek=$(expr ${EMMC_IMAGE_SIZE} \* ${BLOCK_SECTOR})
     parted -s ${EMMC_IMAGE} mklabel gpt
     parted -s ${EMMC_IMAGE} unit KiB mkpart boot fat16 ${BOOT_PARTITION_OFFSET} $(expr ${BOOT_PARTITION_OFFSET} \+ ${BOOT_PARTITION_SIZE})
