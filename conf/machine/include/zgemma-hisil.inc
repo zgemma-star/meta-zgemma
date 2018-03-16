@@ -14,13 +14,18 @@ PREFERRED_PROVIDER_virtual/libopencl ?= "zgemma-mali-${MACHINE}"
 PREFERRED_PROVIDER_virtual/blindscan-dvbc ?= "zgemma-dvb-modules-${MACHINE}"
 PREFERRED_PROVIDER_virtual/blindscan-dvbs ?= "zgemma-dvb-modules-${MACHINE}"
 
+# require conf/machine/include/arm/arch-armv8.inc
 require conf/machine/include/tune-cortexa15.inc
 require conf/machine/include/zgemma-essential.inc
 
-PACKAGECONFIG_GL_pn-qtbase += " gles2 eglfs linuxfb"
+# Qt
+PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
+
+# Kodi
 EXTRA_OECONF_append_pn-kodi += " --with-gpu=mali"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
+	ffmpeg \
 	gst-plugin-dvbmediasink \
 	ntfs-3g \
 	"
