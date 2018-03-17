@@ -19,7 +19,7 @@ require conf/machine/include/tune-cortexa15.inc
 require conf/machine/include/zgemma-essential.inc
 
 # Qt
-PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
+PACKAGECONFIG_GL_pn-qtbase = "nogles linuxfb"
 
 # Kodi
 EXTRA_OECONF_append_pn-kodi += " --with-gpu=mali"

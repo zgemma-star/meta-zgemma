@@ -9,13 +9,13 @@ do_compile() {
 }
 
 do_install_append() {
-	install -d ${D}${incdir}
+	install -d ${D}${includedir}
 	for d in EGL GLES GLES2 KHR; do
-		install -d ${D}${incdir}/$d
+		install -d ${D}${includedir}/$d
 		for f in ${S}/$d/*.h; do
-			install -m 0644 $f ${D}${incdir}/$d/
+			install -m 0644 $f ${D}${includedir}/$d/
 		done
 	done
 }
 
-FILES_${PN}-dev = "${incdir}/*"
+FILES_${PN}-dev = "${includedir}/*"
