@@ -3,9 +3,11 @@ SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
+
 DEPENDS = "zlib libpng freetype curl libxml2 libjpeg-turbo harfbuzz"
 
-SRC_URI = "http://www.zgemma.org/downloads/${MACHINE}-libs-${SRCDATE}.zip"
+SRC_URI = "http://www.zgemma.org/downloads/${MACHINE}-libs${VER}-${SRCDATE}.zip"
 
 S = "${WORKDIR}"
 

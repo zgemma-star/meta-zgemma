@@ -3,19 +3,13 @@ SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
+DEPENDS = "zgemma-mali-utgard-headers"
 
 PROVIDES = "virtual/libgles2 virtual/libgles1 virtual/egl virtual/libopencl"
+RPROVIDES_${PN} = "libmali.so libEGL.so libGLESv1_CM.so libGLESv2.so"
 
-DEPENDS = "zgemma-mali-headers"
-
-SRCDATE = "20171106"
-
-COMPATIBLE_MACHINE = "h9"
-
-SRC_URI = "http://www.zgemma.org/downloads/${MACHINE}-mali-${SRCDATE}.zip"
-
-SRC_URI[md5sum] = "472e99bac874f952f82453d56f1a76a6"
-SRC_URI[sha256sum] = "a163527eac4ff1782601d3927bff1f2c726b3d891d056c004753d0f09fe3c23f"
+SRC_URI = "http://www.zgemma.org/downloads/${MACHINE}-mali${VER}-${SRCDATE}.zip"
 
 S = "${WORKDIR}"
 
@@ -34,16 +28,17 @@ do_install_append() {
 	install -d ${D}${libdir}
 	install -d ${D}${sysconfdir}/udev/rules.d
 	install -m 0755 ${S}/libMali.so ${D}${libdir}
-	ln -s libMali.so ${D}${libdir}/libmali.so
-	ln -s libMali.so ${D}${libdir}/libEGL.so
-	ln -s libMali.so ${D}${libdir}/libGLESv1_CM.so
-	ln -s libMali.so ${D}${libdir}/libGLESv2.so
+	ln -sf libMali.so ${D}${libdir}/libmali.so
+	ln -sf libMali.so ${D}${libdir}/libEGL.so
+	ln -sf libMali.so ${D}${libdir}/libGLESv1_CM.so
+	ln -sf libMali.so ${D}${libdir}/libGLESv2.so
 	install -m 0644 ${S}/50-mali.rules ${D}${sysconfdir}/udev/rules.d/50-mali.rules
 }
 
-FILES_${PN} = "/usr/lib/* /etc/udev/rules.d/50-mali.rules"
-FILES_${PN}-dev = "/usr/include/*"
+do_package_qa() {
+}
 
-RPROVIDES_${PN} = "libmali.so libEGL.so libGLESv1_CM.so libGLESv2.so virtual/libgles2 virtual/libgles1 virtual/egl virtual/libopencl"
+FILES_${PN} = "${libdir} /etc/udev/rules.d/50-mali.rules"
+FILES_${PN}-dev = "${incdir}"
 
 INSANE_SKIP_${PN} += "already-stripped dev-so ldflags"

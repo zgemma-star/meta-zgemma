@@ -7,7 +7,7 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-cdfs \
 	\
 	${@bb.utils.contains('MACHINE_FEATURES', 'v3d-nxpl', 'zgemma-v3ddriver-${MACHINE}' , '', d)} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'zgemma-mali-${MACHINE}' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'zgemma-mali-${MACHINE} kernel-module-mali-${MACHINE}' , '', d)} \
 	\
 	firmware-carl9170 \
 	firmware-htc7010 \

@@ -3,9 +3,10 @@ SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+DEPENDS = "zgemma-v3ddriver-headers"
 
 PROVIDES = "virtual/libgles2 virtual/egl"
-DEPENDS = "zgemma-v3ddriver-headers"
+RPROVIDES_${PN} = "libnxpl.so libnexus.so libv3ddriver.so libGLESv2.so libEGL.so"
 
 PV = "${SRCDATE}"
 PR = "r0"
@@ -25,13 +26,11 @@ do_install_append() {
 	install -m 0755 ${S}/libnxpl.so ${D}${libdir}/
 	install -m 0755 ${S}/libnexus.so ${D}${libdir}/
 	install -m 0755 ${S}/libv3ddriver.so ${D}${libdir}/
-	ln -s libv3ddriver.so ${D}${libdir}/libEGL.so
-	ln -s libv3ddriver.so ${D}${libdir}/libGLESv2.so
+	ln -sf libv3ddriver.so ${D}${libdir}/libEGL.so
+	ln -sf libv3ddriver.so ${D}${libdir}/libGLESv2.so
 }
 
-FILES_${PN} = "/usr/lib/*"
-FILES_${PN}-dev = "/usr/include/*"
+FILES_${PN} = "${libdir}"
+FILES_${PN}-dev = "${incdir}"
 
-RPROVIDES_${PN} = "libnxpl.so libnexus.so libv3ddriver.so libGLESv2.so libEGL.so virtual/libgles2 virtual/egl"
-
-INSANE_SKIP_${PN} += "already-stripped dev-so"
+INSANE_SKIP_${PN} += "already-stripped dev-so ldflags"
