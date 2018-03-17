@@ -18,4 +18,4 @@ do_install_append() {
 	done
 }
 
-FILES_${PN}-dev = "${incdir}"
+FILES_${PN}-dev = "${incdir}/*"
