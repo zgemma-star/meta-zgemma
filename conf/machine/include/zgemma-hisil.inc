@@ -18,6 +18,9 @@ PREFERRED_PROVIDER_virtual/blindscan-dvbs ?= "zgemma-dvb-modules-${MACHINE}"
 require conf/machine/include/tune-cortexa15.inc
 require conf/machine/include/zgemma-essential.inc
 
+# E2 OSD settings
+EXTRA_OECONF_append_pn-enigma2 += " --with-alphablendingacceleration=always --with-blitaccelerationthreshold=250  --with-fillaccelerationthreshold=190000"
+
 # Qt
 PACKAGECONFIG_GL_pn-qtbase = "nogles linuxfb"
 
