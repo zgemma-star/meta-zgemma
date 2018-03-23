@@ -26,6 +26,7 @@ EXTRA_OECONF_append_pn-kodi += " --with-gpu=mali"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
 	ffmpeg \
+	enigma2-plugin-systemplugins-servicehisilicon \
 	gst-plugin-dvbmediasink \
 	ntfs-3g \
 	"
