@@ -1,5 +1,5 @@
 KV = "4.4.35"
-SRCDATE = "20180327"
+SRCDATE = "20180411"
 
 PROVIDES = "virtual/blindscan-dvbc virtual/blindscan-dvbs"
 
