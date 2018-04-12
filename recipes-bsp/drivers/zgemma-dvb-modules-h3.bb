@@ -1,5 +1,5 @@
 KV = "4.10.12"
-SRCDATE = "20190411"
+SRCDATE = "20180411"
 
 require zgemma-dvb-modules.inc
 
