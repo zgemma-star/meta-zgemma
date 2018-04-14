@@ -5,6 +5,9 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
+PROVIDES += "virtual/enigma2-mediaservice"
+RPROVIDES_${PN} += "virtual/enigma2-mediaservice"
+
 DEPENDS = "enigma2"
 RDEPENDS_${PN} = "enigma2"
 
