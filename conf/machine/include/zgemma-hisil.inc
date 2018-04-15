@@ -13,8 +13,8 @@ PREFERRED_PROVIDER_virtual/libgles2 ?= "zgemma-mali-${MACHINE}"
 PREFERRED_PROVIDER_virtual/libopencl ?= "zgemma-mali-${MACHINE}"
 PREFERRED_PROVIDER_virtual/blindscan-dvbc ?= "zgemma-dvb-modules-${MACHINE}"
 PREFERRED_PROVIDER_virtual/blindscan-dvbs ?= "zgemma-dvb-modules-${MACHINE}"
-# PREFERRED_PROVIDER_virtual/gstreamer1.0-dvbmediasink ?= "gstreamer1.0-plugin-dvbmediasink"
-# PREFERRED_PROVIDER_virtual/enigma2-mediaservice ?= "enigma2-plugin-systemplugins-servicehisilicon"
+PREFERRED_PROVIDER_virtual/gstreamer1.0-dvbmediasink ?= "gstreamer1.0-plugin-dvbmediasink"
+PREFERRED_PROVIDER_virtual/enigma2-mediaservice ?= "enigma2-plugin-systemplugins-servicehisilicon"
 
 # require conf/machine/include/arm/arch-armv8.inc
 require conf/machine/include/tune-cortexa15.inc
@@ -31,12 +31,8 @@ EXTRA_OECONF_append_pn-kodi += " --with-gpu=mali"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
 	ffmpeg \
-	enigma2-plugin-systemplugins-servicehisilicon \
-	gst-plugin-dvbmediasink \
 	ntfs-3g \
 	"
-
-DVBMEDIASINK_CONFIG += " --with-h265 --with-vb8 --with-vb9 --with-wma --with-wmv --with-pcm --with-dts --with-eac3"
 
 MACHINE_FEATURES += " alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
 
