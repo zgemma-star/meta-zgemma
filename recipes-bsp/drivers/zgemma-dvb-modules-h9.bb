@@ -21,7 +21,7 @@ do_compile_append () {
 	cat > suspend << EOF
 #!/bin/sh
 
-if [ "$1x" == "stopx" ]
+if [ "\$1x" == "stopx" ]
 then
 	exit 0
 fi
