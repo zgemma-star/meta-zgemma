@@ -60,10 +60,10 @@ IMAGE_CMD_zgemmc () {
     echo "boot emmcflash0.kernel2 'root=/dev/mmcblk0p5 rw rootwait ${MACHINE}_4.boxmode=1'" > ${WORKDIR}/STARTUP_BOOTSLOT_2_MODE_1
     echo "boot emmcflash0.kernel3 'root=/dev/mmcblk0p7 rw rootwait ${MACHINE}_4.boxmode=1'" > ${WORKDIR}/STARTUP_BOOTSLOT_3_MODE_1
     echo "boot emmcflash0.kernel4 'root=/dev/mmcblk0p9 rw rootwait ${MACHINE}_4.boxmode=1'" > ${WORKDIR}/STARTUP_BOOTSLOT_4_MODE_1
-    echo "boot emmcflash0.kernel1 'brcm_cma=440M@328M brcm_cma=192M@768M root=/dev/mmcblk0p3 rw rootwait ${MACHINE}_4.boxmode=12'" > ${WORKDIR}/STARTUP_BOOTSLOT_1_MODE_12
-    echo "boot emmcflash0.kernel2 'brcm_cma=440M@328M brcm_cma=192M@768M root=/dev/mmcblk0p5 rw rootwait ${MACHINE}_4.boxmode=12'" > ${WORKDIR}/STARTUP_BOOTSLOT_2_MODE_12
-    echo "boot emmcflash0.kernel3 'brcm_cma=440M@328M brcm_cma=192M@768M root=/dev/mmcblk0p7 rw rootwait ${MACHINE}_4.boxmode=12'" > ${WORKDIR}/STARTUP_BOOTSLOT_3_MODE_12
-    echo "boot emmcflash0.kernel4 'brcm_cma=440M@328M brcm_cma=192M@768M root=/dev/mmcblk0p9 rw rootwait ${MACHINE}_4.boxmode=12'" > ${WORKDIR}/STARTUP_BOOTSLOT_4_MODE_12
+    echo "boot emmcflash0.kernel1 'brcm_cma=520M@248M brcm_cma=192M@768M root=/dev/mmcblk0p3 rw rootwait ${MACHINE}_4.boxmode=12'" > ${WORKDIR}/STARTUP_BOOTSLOT_1_MODE_12
+    echo "boot emmcflash0.kernel2 'brcm_cma=520M@248M brcm_cma=192M@768M root=/dev/mmcblk0p5 rw rootwait ${MACHINE}_4.boxmode=12'" > ${WORKDIR}/STARTUP_BOOTSLOT_2_MODE_12
+    echo "boot emmcflash0.kernel3 'brcm_cma=520M@248M brcm_cma=192M@768M root=/dev/mmcblk0p7 rw rootwait ${MACHINE}_4.boxmode=12'" > ${WORKDIR}/STARTUP_BOOTSLOT_3_MODE_12
+    echo "boot emmcflash0.kernel4 'brcm_cma=520M@248M brcm_cma=192M@768M root=/dev/mmcblk0p9 rw rootwait ${MACHINE}_4.boxmode=12'" > ${WORKDIR}/STARTUP_BOOTSLOT_4_MODE_12
     mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}/STARTUP ::
     mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}/STARTUP_BOOTSLOT_1_MODE_1 ::
     mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}/STARTUP_BOOTSLOT_2_MODE_1 ::
