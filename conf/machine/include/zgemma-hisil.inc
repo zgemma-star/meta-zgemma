@@ -24,6 +24,7 @@ require conf/machine/include/zgemma-essential.inc
 EXTRA_OECONF_append_pn-enigma2 += " --with-alphablendingacceleration=always --with-blitaccelerationthreshold=250  --with-fillaccelerationthreshold=190000"
 
 # Qt
+QT_PACKAGES_ARCH = "${MACHINE_ARCH}"
 PACKAGECONFIG_GL_pn-qtbase = "no-opengl linuxfb"
 
 # Kodi
