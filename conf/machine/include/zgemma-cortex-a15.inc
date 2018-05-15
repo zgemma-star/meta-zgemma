@@ -13,7 +13,11 @@ PREFERRED_PROVIDER_virtual/libgles2 ?= "zgemma-v3ddriver-${MACHINE}"
 require conf/machine/include/tune-cortexa15.inc
 require conf/machine/include/zgemma-essential.inc
 
+# Qt
+QT_PACKAGES_ARCH = "${MACHINE_ARCH}"
 PACKAGECONFIG_GL_pn-qtbase = "no-opengl linuxfb"
+
+# Kodi
 EXTRA_OECONF_append_pn-kodi = " --with-gpu=v3d"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
