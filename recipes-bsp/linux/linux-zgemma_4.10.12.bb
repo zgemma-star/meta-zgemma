@@ -7,7 +7,7 @@ COMPATIBLE_MACHINE = "(sh1|h3|h4|h5|h6|h7|lc|i55)"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".0"
+MACHINE_KERNEL_PR_append = ".1"
 
 SRC_URI[mips.md5sum] = "3c42df14db9d12041802f4c8fec88e17"
 SRC_URI[mips.sha256sum] = "738896d2682211d2079eeaa1c7b8bdd0fe75eb90cd12dff2fc5aeb3cc02562bc"
