@@ -14,7 +14,6 @@ require conf/machine/include/tune-cortexa15.inc
 require conf/machine/include/zgemma-essential.inc
 
 # Qt
-QT_PACKAGES_ARCH = "${MACHINE_ARCH}"
 PACKAGECONFIG_GL_pn-qtbase = "no-opengl linuxfb"
 
 # Kodi
