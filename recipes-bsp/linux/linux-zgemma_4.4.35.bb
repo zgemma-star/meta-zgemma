@@ -17,7 +17,10 @@ SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz
 	file://defconfig \
 "
 
-SRC_URI_append_h9 = "file://0001-mmc-switch-1.8V.patch"
+SRC_URI_append_h9 = " \
+	file://0001-mmc-switch-1.8V.patch \
+	file://0002-ieee80211-increase-scan-result-expire-time.patch \
+"
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
 # to be installed in parallel. We revert this change and rprovide the versioned
