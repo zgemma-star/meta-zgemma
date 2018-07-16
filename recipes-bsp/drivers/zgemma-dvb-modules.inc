@@ -2,6 +2,8 @@ DESCRIPTION = "Hardware drivers for ${MACHINE}"
 SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
+
 VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
 
 PV = "${KV}-${SRCDATE}"
