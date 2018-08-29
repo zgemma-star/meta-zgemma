@@ -3,6 +3,7 @@ SECTION = "base"
 PRIORITY = "required"
 LICENSE = "CLOSED"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+PR = "${SRCDATE}"
 VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
 
 DEPENDS = "zlib libpng freetype curl libxml2 libjpeg-turbo harfbuzz"

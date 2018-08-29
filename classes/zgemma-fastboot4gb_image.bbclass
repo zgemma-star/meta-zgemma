@@ -2,7 +2,7 @@ inherit image_types
 
 IMAGE_TYPEDEP_fastboot4gb = "ext4"
 
-do_image_fastboot[depends] = " \
+do_image_fastboot4gb[depends] = " \
 	android-tools-native:do_populate_sysroot \
 	"
 
