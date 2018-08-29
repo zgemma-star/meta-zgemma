@@ -59,9 +59,27 @@ IMAGE_CMD_ubi_append = " \
 	rm -Rf ${IMAGEDIR}; \
 	"
 
-IMAGE_CMD_fastboot_append = " \
+IMAGE_CMD_fastboot4gb_append = " \
 	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
-	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.fastboot.gz ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/rootfs.fastboot.gz; \
+	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.fastboot4gb.gz ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/rootfs.fastboot.gz; \
+	cp ${DEPLOY_DIR_IMAGE}/uImage ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/uImage; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/fastboot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/fastboot.bin; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/bootargs.bin; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/fastboot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/fastboot.bin; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/bootargs.bin; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/pq_param.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/pq_param.bin; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/baseparam.img ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/baseparam.img; \
+	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/${MACHINE}/logo.img ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/logo.img; \
+	echo "${IMAGEVERSION}" > ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/imageversion; \
+	cd ${IMGDEPLOYDIR}/${IMAGEDIR}; \
+	zip -r ../${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_emmc.zip *; \
+	cd ..; \
+	rm -Rf ${IMAGEDIR}; \
+	"
+
+IMAGE_CMD_fastboot8gb_append = " \
+	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
+	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.fastboot8gb.gz ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/rootfs.fastboot.gz; \
 	cp ${DEPLOY_DIR_IMAGE}/uImage ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/uImage; \
 	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/fastboot.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/fastboot.bin; \
 	cp ${DEPLOY_DIR_IMAGE}/${MACHINE}-partitions/bootargs.bin ${IMGDEPLOYDIR}/${IMAGEDIR}/bootargs.bin; \

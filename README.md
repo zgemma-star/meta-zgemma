@@ -4,7 +4,7 @@ BSP layer for Zgemma Star models
 *** Setup your build system *** <br />
 Install ubuntu/kubuntu 16.04 64bit <br />
 To build an AOSP or E2 images you'll need to install the follow packages: <br />
-sudo apt install openjdk-8-jdk m4 lib32stdc++6 curl git subversion chrpath gawk g++ texinfo repo android-tools-fsutils python-lunch <br />
+sudo apt install openjdk-8-jdk m4 lib32stdc++6 curl git subversion chrpath gawk g++ texinfo repo android-tools-fsutils python-lunch u-boot-tools <br />
 
 *** How to build E2 image *** <br />
 example: Openpli image for model H9 <br />
@@ -31,7 +31,7 @@ mkdir aosp-build <br />
 cd aosp-build <br />
 git config --global user.mail "you@example.com" <br />
 git config --global user.name "Your Name" <br />
-repo init -u https://android.googlesource.com/platform/manifest.git -b android-8.1.0_r9 <br />
+repo init -u https://android.googlesource.com/platform/manifest.git -b android-8.0.0_r4 <br />
 repo sync -j8 <br />
 
 git clone https://github.com/zgemma-star/aosp/h9-device device/hisilicon/h9 <br />
@@ -39,9 +39,9 @@ git clone https://github.com/zgemma-star/aosp/kernel device/hisilicon/kernel <br
 git clone https://github.com/zgemma-star/aosp/h9-vendor vendor/hisilicon/h9 <br />
 
 source build/envsetup.sh <br />
-lunch h9-eng <br />
-make -j8 <br />
-make bootimage -j8 <br />
+lunch h9<br />
+Choose your build (Venus-eng)<br />
+make -j32 bigfish <br />
 
 *** Easy to know *** <br />
 Download all the packages before build: bitbake "image" -c fetchall <br />
