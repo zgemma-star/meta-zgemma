@@ -8,7 +8,7 @@ VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
 
 DEPENDS = "zlib libpng freetype curl libxml2 libjpeg-turbo harfbuzz"
 
-SRC_URI = "http://www.zgemma.org/downloads/zgemma-libs${VER}-${MACHINE}-${SRCDATE}.zip"
+SRC_URI = "http://www.zgemma.org/downloads/zgemma-libs${VER}-3798mv200-${SRCDATE}.zip"
 
 S = "${WORKDIR}"
 
