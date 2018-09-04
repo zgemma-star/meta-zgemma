@@ -6,7 +6,7 @@ VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
 
 KERNEL_RELEASE = "4.4.35"
 SRCDATE = "20180214"
-COMPATIBLE_MACHINE = "(h9|h10)"
+COMPATIBLE_MACHINE = "(h9|i55plus)"
 
 inherit kernel machine_kernel_pr
 
@@ -17,7 +17,7 @@ SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz
 	file://defconfig \
 "
 
-SRC_URI_append_h9 = " \
+SRC_URI_append += " \
 	file://0001-mmc-switch-1.8V.patch \
 	file://0002-ieee80211-increase-scan-result-expire-time.patch \
 "
