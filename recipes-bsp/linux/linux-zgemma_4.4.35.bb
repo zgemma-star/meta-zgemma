@@ -15,9 +15,6 @@ SRC_URI[arm.sha256sum] = "3dd7e7a99f70f0be8b725e4628f243c3aa1d42072a32e4a4b5268f
 
 SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz;name=${ARCH} \
 	file://defconfig \
-"
-
-SRC_URI_append += " \
 	file://0001-mmc-switch-1.8V.patch \
 	file://0002-ieee80211-increase-scan-result-expire-time.patch \
 "
