@@ -1,12 +1,12 @@
 KV = "4.4.35"
-SRCDATE = "20180918"
+SRCDATE = "20180922"
 
 PROVIDES = "virtual/blindscan-dvbc virtual/blindscan-dvbs"
 
 require zgemma-dvb-modules.inc
 
-SRC_URI[arm.md5sum] = "5b89f02cb62e19432a77e5094dc95b09"
-SRC_URI[arm.sha256sum] = "f3c8dc41972c4f6c0d69ba8ab8e2152a3ae5ead0b6df2c31a080ccf3745e012e"
+SRC_URI[arm.md5sum] = "d906655140d97e9ce28628b64e89e9a1"
+SRC_URI[arm.sha256sum] = "bb66936aae1f255da8369f446ba0cee7962efc3c4670e0abed78338270f9a5de"
 
 COMPATIBLE_MACHINE = "h9"
 
@@ -21,7 +21,7 @@ do_compile_append () {
 	cat > suspend << EOF
 #!/bin/sh
 
-if [ "\$1x" == "stopx" ]
+if [ "x" == "stopx" ]
 then
 	exit 0
 fi
