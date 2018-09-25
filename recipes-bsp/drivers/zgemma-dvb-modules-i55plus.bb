@@ -21,8 +21,9 @@ do_compile_append () {
 	cat > suspend << EOF
 #!/bin/sh
 
-if [ "x" == "stopx" ]
-then
+runlevel=runlevel | cut -d' ' -f2
+
+if [ "\$runlevel" != "0" ] ; then
 	exit 0
 fi
 
