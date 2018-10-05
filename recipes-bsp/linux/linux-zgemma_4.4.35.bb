@@ -10,6 +10,8 @@ COMPATIBLE_MACHINE = "(h9|i55plus)"
 
 inherit kernel machine_kernel_pr
 
+MACHINE_KERNEL_PR_append = ".2"
+
 SRC_URI[arm.md5sum] = "bb368255800be3d3d7cfa2710928fe9c"
 SRC_URI[arm.sha256sum] = "3dd7e7a99f70f0be8b725e4628f243c3aa1d42072a32e4a4b5268f69b535fc1d"
 
@@ -34,11 +36,11 @@ S = "${WORKDIR}/linux-${PV}"
 
 export OS = "Linux"
 KERNEL_OBJECT_SUFFIX = "ko"
-KERNEL_IMAGEDEST = "tmp"
+KERNEL_IMAGEDEST = "/tmp"
 KERNEL_IMAGETYPE = "uImage"
 KERNEL_OUTPUT = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 
-FILES_kernel-image = "/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}"
+FILES_kernel-image = "${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}"
 
 kernel_do_install_append() {
 	install -d ${D}${KERNEL_IMAGEDEST}
