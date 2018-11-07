@@ -6,7 +6,7 @@ VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
 
 KERNEL_RELEASE = "4.4.35"
 SRCDATE = "20180214"
-COMPATIBLE_MACHINE = "(h9|i55plus)"
+COMPATIBLE_MACHINE = "(h9|i55plus|h9combo)"
 
 inherit kernel machine_kernel_pr
 
@@ -45,11 +45,20 @@ kernel_do_install_append() {
 	install -m 0755 ${KERNEL_OUTPUT} ${D}${KERNEL_IMAGEDEST}
 }
 
-pkg_postinst_kernel-image() {
+pkg_postinst_kernel-image_h9() {
 	if [ "x$D" == "x" ]; then
 		if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ] ; then
 			flash_eraseall /dev/${MTD_KERNEL}
 			nandwrite -p /dev/${MTD_KERNEL} /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}
+		fi
+	fi
+	true
+}
+
+pkg_postinst_kernel-image() {
+	if [ "x$D" == "x" ]; then
+		if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ] ; then
+			dd if=/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} of=/dev/mmcblk0p20
 		fi
 	fi
 	true
