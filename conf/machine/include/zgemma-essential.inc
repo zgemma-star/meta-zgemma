@@ -1,13 +1,13 @@
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
 	zgemma-dvb-modules-${MACHINE} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3798mv200', 'zgemma-libs-3798mv200 zgemma-partitions-3798mv200 zgemma-bootargs-${MACHINE}' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3798mv200', 'zgemma-libs-${HICHIPSET} zgemma-param-${HICHIPSET} zgemma-bootargs-${HICHIPSET} zgemma-bootlogo-${HICHIPSET} zgemma-fastboot-${HICHIPSET}' , '', d)} \
 	"
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-cdfs \
 	\
 	${@bb.utils.contains('MACHINE_FEATURES', 'v3d-nxpl', 'zgemma-v3ddriver-${MACHINE}' , '', d)} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3798mv200', 'kernel-module-mali-${MACHINE} zgemma-mali-${MACHINE}' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3798mv200', 'kernel-module-mali-${HICHIPSET} zgemma-mali-${HICHIPSET}' , '', d)} \
 	\
 	firmware-carl9170 \
 	firmware-htc7010 \

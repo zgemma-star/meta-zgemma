@@ -10,7 +10,7 @@ DEPENDS = "zgemma-mali-utgard-headers"
 PROVIDES = "virtual/libgles2 virtual/libgles1 virtual/egl virtual/libopencl"
 RPROVIDES_${PN} = "libmali.so libEGL.so libGLESv1_CM.so libGLESv2.so"
 
-SRC_URI = "http://www.zgemma.org/downloads/zgemma-mali${VER}-3798mv200-${SRCDATE}.zip"
+SRC_URI = "http://www.zgemma.org/downloads/zgemma-mali${VER}-${HICHIPSET}-${SRCDATE}.zip"
 
 S = "${WORKDIR}"
 
