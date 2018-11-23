@@ -52,4 +52,4 @@ Download direct the branch: -b "branch_name" <br />
 example: git clone -b release-6.2 https://github.com/OpenPLi/openpli-oe-core.git <br />
 Build image from local enigma2 git<br />
 example: git clone https://github.com/OpenPLi/enigma2.git <br />
-Adjust enigma2.bb SRC_URI = "git:///opt/enigma2/;branch=${ENIGMA@_BRANCH};protocol=file" <br>
+Adjust enigma2.bb SRC_URI = "git:///opt/enigma2/;branch=${ENIGMA2_BRANCH};protocol=file" <br>
