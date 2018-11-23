@@ -6,7 +6,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 PR = "${SRCDATE}"
 VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
 
-DEPENDS = "zlib libpng freetype curl libxml2 libjpeg-turbo harfbuzz"
+DEPENDS = "curl enigma2 glibc freetype harfbuzz libjpeg-turbo libpng libxml2 zlib"
 
 SRC_URI = "http://www.zgemma.org/downloads/zgemma-libs${VER}-3798mv200-${SRCDATE}.zip"
 
@@ -22,6 +22,8 @@ do_compile[noexec] = "1"
 do_install() {
 	install -d ${D}${libdir}/hisilicon
 	install -m 0755 ${S}/hisilicon/* ${D}${libdir}/hisilicon
+	install -m 0755 ${S}/ffmpeg/* ${D}${libdir}/hisilicon
+	install -m 0755 ${S}/glibc/* ${D}${libdir}/hisilicon
 }
 
 do_package_qa() {
