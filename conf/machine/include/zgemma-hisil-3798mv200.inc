@@ -21,13 +21,13 @@ require conf/machine/include/tune-cortexa15.inc
 require conf/machine/include/zgemma-essential.inc
 
 # E2 OSD settings
-EXTRA_OECONF_append_pn-enigma2 += " --with-alphablendingacceleration=always --with-blitaccelerationthreshold=250  --with-fillaccelerationthreshold=190000"
+EXTRA_OECONF_append_pn-enigma2 += " --with-alphablendingacceleration=always --with-blitaccelerationthreshold=250 --with-fillaccelerationthreshold=190000"
 
 # Qt
 PACKAGECONFIG_GL_pn-qtbase = "no-opengl linuxfb"
 
 # Kodi
-EXTRA_OECONF_append_pn-kodi += " --with-gpu=mali"
+EXTRA_OECONF_append_pn-kodi += " --with-gpu=mali --enable-player=hiplayer"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
 	ffmpeg \
