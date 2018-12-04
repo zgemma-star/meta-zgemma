@@ -22,6 +22,7 @@ EXTRA_OECONF_append_pn-kodi = " --with-gpu=v3d"
 MACHINE_EXTRA_RRECOMMENDS = " \
 	gst-plugin-dvbmediasink \
 	ntfs-3g \
+	resizerootfs \
 	"
 
 DVBMEDIASINK_CONFIG = "--with-h265 --with-vb8 --with-vb9 --with-wma --with-wmv --with-pcm --with-dts --with-eac3"
