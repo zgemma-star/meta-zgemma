@@ -6,8 +6,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 PR = "${SRCDATE}"
 VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
 
-DEPENDS = "curl enigma2 glibc freetype harfbuzz libjpeg-turbo libpng libxml2 zlib"
-
 SRC_URI = "http://www.zgemma.org/downloads/zgemma-libs${VER}-${HICHIPSET}-${SRCDATE}.zip"
 
 S = "${WORKDIR}"
@@ -32,5 +30,6 @@ do_package_qa() {
 }
 
 FILES_${PN} = "${libdir}/hisilicon/*"
+FILES_${PN}-dev = ""
 
 INSANE_SKIP_${PN} += "ldflags already-stripped dev-so"
