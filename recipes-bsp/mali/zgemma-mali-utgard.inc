@@ -8,7 +8,7 @@ DEPENDS = "libdrm mesa patchelf-native"
 VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
 
 PROVIDES = "virtual/libgles2 virtual/libgles1 virtual/egl virtual/libgbm"
-RPROVIDES_${PN} = "libmali.so libMali.so libEGL.so.1.4 libEGL.so.1 libEGL.so libGLESv1_CM.so.1.1 libGLESv1_CM.so.1 libGLESv1_CM.so libGLESv2.so.2.0 libGLESv2.so.2 libGLESv2.so libgbm.so"
+RPROVIDES_${PN} = "libMali.so libmali.so libEGL.so.1.4 libEGL.so.1 libEGL.so libGLESv1_CM.so.1.1 libGLESv1_CM.so.1 libGLESv1_CM.so libGLESv2.so.2.0 libGLESv2.so.2 libGLESv2.so libgbm.so libgbm.so.1"
 
 SRC_URI = "http://www.zgemma.org/downloads/zgemma-mali${VER}-${HICHIPSET}-${SRCDATE}.zip"
 
@@ -41,7 +41,8 @@ do_install_append() {
     (cd ${D}/${libdir} && ln -sf libMali.so libGLESv2.so.2.0 \
     && ln -sf libGLESv2.so.2.0 libGLESv2.so.2 \
     && ln -sf libGLESv2.so.2 libGLESv2.so)
-    (cd ${D}/${libdir} && ln -sf libMali.so libgbm.so)
+    (cd ${D}/${libdir} && ln -sf libMali.so libgbm.so.1 \
+    && ln -sf libgbm.so.1 libgbm.so)
 }
 
 do_package_qa() {
