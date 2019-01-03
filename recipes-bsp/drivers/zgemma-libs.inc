@@ -12,6 +12,9 @@ S = "${WORKDIR}"
 
 INHIBIT_PACKAGE_STRIP = "1"
 
+# Disable anything auto depending on zgemma-libs
+EXCLUDE_FROM_SHLIBS = "1"
+
 # The driver is a set of binary libraries to install
 # there's nothing to configure or compile
 do_configure[noexec] = "1"
