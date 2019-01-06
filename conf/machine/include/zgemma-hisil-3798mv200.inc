@@ -76,7 +76,7 @@ IMAGE_CMD_fastboot4gb_append = " \
 	cp ${DEPLOY_DIR_IMAGE}/zgemma-partitions-${MACHINE}/${MACHINE}/logo.img ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/logo.img; \
 	echo "${IMAGEVERSION}" > ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/imageversion; \
 	cd ${IMGDEPLOYDIR}/${IMAGEDIR}; \
-	zip -r ../${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_emmc.zip *; \
+	zip -r ../${IMAGE_NAME}_emmc.zip *; \
 	cd ..; \
 	rm -Rf ${IMAGEDIR}; \
 	"
@@ -96,7 +96,7 @@ IMAGE_CMD_fastboot8gb_append = " \
 	cp ${DEPLOY_DIR_IMAGE}/zgemma-partitions-${MACHINE}/${MACHINE}/logo.img ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/logo.img; \
 	echo "${IMAGEVERSION}" > ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/imageversion; \
 	cd ${IMGDEPLOYDIR}/${IMAGEDIR}; \
-	zip -r ../${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_emmc.zip *; \
+	zip -r ../${IMAGE_NAME}_emmc.zip *; \
 	cd ..; \
 	rm -Rf ${IMAGEDIR}; \
 	"
