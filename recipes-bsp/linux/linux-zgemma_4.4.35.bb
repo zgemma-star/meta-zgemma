@@ -10,18 +10,18 @@ COMPATIBLE_MACHINE = "(h10|h9|i55plus|h9combo)"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".2"
+MACHINE_KERNEL_PR_append = ".3"
 
 SRC_URI[arm.md5sum] = "ede25f1c2c060f1059529a2896cee5a9"
 SRC_URI[arm.sha256sum] = "ea4ba0433d252c18f38ff2f4dce4b70880e447e1cffdc2066d5a9b5f8098ae7e"
 
 SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz;name=${ARCH} \
 	file://defconfig \
+	file://0002-ieee80211-increase-scan-result-expire-time.patch \
 "
 
 SRC_URI_append += " \
 	file://0001-mmc-switch-1.8V.patch \
-	file://0002-ieee80211-increase-scan-result-expire-time.patch \
 "
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
