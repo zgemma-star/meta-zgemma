@@ -18,7 +18,8 @@ require conf/machine/include/tune-cortexa15.inc
 require conf/machine/include/zgemma-essential.inc
 
 # Qt
-PACKAGECONFIG_GL_pn-qtbase = "no-opengl linuxfb"
+PACKAGECONFIG_GL_pn-qtbase = " "
+PACKAGECONFIG_append_pn-qtbase += " no-opengl linuxfb"
 
 # Kodi
 EXTRA_OECONF_append_pn-kodi = " --with-gpu=v3d"
