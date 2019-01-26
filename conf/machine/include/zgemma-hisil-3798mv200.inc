@@ -30,7 +30,7 @@ EXTRA_OECONF_append_pn-enigma2 += " --with-alphablendingacceleration=always --wi
 
 # Qt
 PACKAGECONFIG_GL_pn-qtbase = " "
-PACKAGECONFIG_append_pn-qtbase += " no-opengl linuxfb"
+PACKAGECONFIG_append_pn-qtbase += " gles2 linuxfb"
 
 # Kodi
 EXTRA_OECONF_append_pn-kodi += " --with-gpu=mali --enable-player=hiplayer"
