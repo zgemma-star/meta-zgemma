@@ -16,7 +16,7 @@ do_configure[nostamp] = "1"
 
 do_deploy() {
     install -d ${DEPLOY_DIR_IMAGE}/zgemma-partitions-${MACHINE}/${MACHINE}
-    install -m 0755 ${WORKDIR}/rescue_fastboot.bin ${DEPLOY_DIR_IMAGE}/zgemma-partitions-${MACHINE}/fastboot.bin
+    install -m 0755 ${WORKDIR}/rescue_fastboot_${MACHINE}.bin ${DEPLOY_DIR_IMAGE}/zgemma-partitions-${MACHINE}/fastboot.bin
     install -m 0755 ${WORKDIR}/fastboot_${MACHINE}.bin ${DEPLOY_DIR_IMAGE}/zgemma-partitions-${MACHINE}/${MACHINE}/fastboot.bin
 }
 

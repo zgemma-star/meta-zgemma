@@ -19,7 +19,7 @@ require conf/machine/include/zgemma-essential.inc
 
 # Qt
 PACKAGECONFIG_GL_pn-qtbase = " "
-PACKAGECONFIG_append_pn-qtbase += " no-opengl linuxfb"
+PACKAGECONFIG_append_pn-qtbase += " gles2 linuxfb"
 
 # Kodi
 EXTRA_OECONF_append_pn-kodi = " --with-gpu=v3d"
