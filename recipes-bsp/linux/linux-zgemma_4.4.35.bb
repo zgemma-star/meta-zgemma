@@ -10,7 +10,7 @@ COMPATIBLE_MACHINE = "(h10|h9|i55plus|h9combo)"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".3"
+MACHINE_KERNEL_PR_append = ".4"
 
 SRC_URI[arm.md5sum] = "ede25f1c2c060f1059529a2896cee5a9"
 SRC_URI[arm.sha256sum] = "ea4ba0433d252c18f38ff2f4dce4b70880e447e1cffdc2066d5a9b5f8098ae7e"
@@ -18,9 +18,17 @@ SRC_URI[arm.sha256sum] = "ea4ba0433d252c18f38ff2f4dce4b70880e447e1cffdc2066d5a9b
 SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz;name=${ARCH} \
 	file://defconfig \
 	file://0002-ieee80211-increase-scan-result-expire-time.patch \
+	file://HauppaugeWinTV-dualHD.patch \
+	file://dib7000-linux_4.4.179.patch \
+	file://dvb-usb-linux_4.4.179.patch \
+	file://mt7601u_check_return_value_of_alloc_skb.patch \
+	file://initramfs-subdirboot.cpio.gz;unpack=0 \
 "
 
-SRC_URI_append += " \
+SRC_URI_append_h9 += " \
+	file://0001-mmc-switch-1.8V.patch \
+"
+SRC_URI_append_i55plus += " \
 	file://0001-mmc-switch-1.8V.patch \
 "
 
@@ -41,6 +49,11 @@ KERNEL_IMAGETYPE = "uImage"
 KERNEL_OUTPUT = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 
 FILES_${KERNEL_PACKAGE_NAME}-image = "${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}"
+
+kernel_do_configure_prepend() {
+	install -d ${B}/usr
+	install -m 0644 ${WORKDIR}/initramfs-subdirboot.cpio.gz ${B}/
+}
 
 kernel_do_install_append() {
 	install -d ${D}${KERNEL_IMAGEDEST}
@@ -70,7 +83,7 @@ pkg_postinst_kernel-image_i55plus() {
 pkg_postinst_kernel-image() {
 	if [ "x$D" == "x" ]; then
 		if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ] ; then
-			dd if=/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} of=/dev/mmcblk0p20
+			dd if=/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} of=/dev/mmcblk0p19
 		fi
 	fi
 	true
