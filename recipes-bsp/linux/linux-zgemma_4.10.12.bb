@@ -7,7 +7,7 @@ COMPATIBLE_MACHINE = "(sh1|h3|h4|h5|h6|h7|lc|i55)"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".2"
+MACHINE_KERNEL_PR_append = ".3"
 
 SRC_URI[mips.md5sum] = "3c42df14db9d12041802f4c8fec88e17"
 SRC_URI[mips.sha256sum] = "738896d2682211d2079eeaa1c7b8bdd0fe75eb90cd12dff2fc5aeb3cc02562bc"
@@ -39,6 +39,7 @@ SRC_URI_append_arm = " \
 	file://findkerneldevice.py \
 	file://reserve_dvb_adapter_0.patch \
 	file://blacklist_mmc0.patch \
+	file://initramfs-subdirboot.cpio.gz;unpack=0 \
 	"
 
 S = "${WORKDIR}/linux-${PV}"
@@ -78,6 +79,11 @@ KERNEL_IMAGETYPE_arm = "zImage"
 KERNEL_OUTPUT_arm = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 
 FILES_${KERNEL_PACKAGE_NAME}-image_arm = "${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ${KERNEL_IMAGEDEST}/findkerneldevice.py"
+
+kernel_do_configure_prepend_arm() {
+	install -d ${B}/usr
+	install -m 0644 ${WORKDIR}/initramfs-subdirboot.cpio.gz ${B}/
+}
 
 kernel_do_install_append_arm() {
         install -d ${D}${KERNEL_IMAGEDEST}
