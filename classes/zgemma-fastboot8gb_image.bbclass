@@ -39,7 +39,14 @@ IMAGE_CMD_zgemmafastboot8gb () {
 	echo "bootcmd=setenv bootargs \$(bootargs_common); mmc read 0 0x1000000 0x1000 0x9000; bootm 0x1000000" > ${WORKDIR}/STARTUP_ONCE
 	echo "imageurl https://raw.githubusercontent.com/oe-alliance/bootmenu/master/${MACHINE}/images" > ${WORKDIR}/bootmenu.conf
 	echo "# " >> ${WORKDIR}/bootmenu.conf
+	echo "# activate eth0 or wlan0 ethernet adapter" >> ${WORKDIR}/bootmenu.conf
 	echo "iface eth0" >> ${WORKDIR}/bootmenu.conf
+	echo "#iface wlan0" >> ${WORKDIR}/bootmenu.conf
+	echo "# " >> ${WORKDIR}/bootmenu.conf
+	echo "#wireless lan settings " >> ${WORKDIR}/bootmenu.conf
+	echo "#ssid "abcdefg"" >> ${WORKDIR}/bootmenu.conf
+	echo "#psk "password"" >> ${WORKDIR}/bootmenu.conf
+	echo "# " >> ${WORKDIR}/bootmenu.conf
 	echo "dhcp yes" >> ${WORKDIR}/bootmenu.conf
 	echo "# " >> ${WORKDIR}/bootmenu.conf
 	echo "# for static config leave out 'dhcp yes' and add the following settings:" >> ${WORKDIR}/bootmenu.conf
