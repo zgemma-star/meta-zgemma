@@ -10,7 +10,7 @@ COMPATIBLE_MACHINE = "(h10|h9|i55plus|h9combo)"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".4"
+MACHINE_KERNEL_PR_append = ".5"
 
 SRC_URI[arm.md5sum] = "ede25f1c2c060f1059529a2896cee5a9"
 SRC_URI[arm.sha256sum] = "ea4ba0433d252c18f38ff2f4dce4b70880e447e1cffdc2066d5a9b5f8098ae7e"
@@ -23,6 +23,7 @@ SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz
 	file://dvb-usb-linux_4.4.179.patch \
 	file://mt7601u_check_return_value_of_alloc_skb.patch \
 	file://initramfs-subdirboot.cpio.gz;unpack=0 \
+	file://findkerneldevice_cmdline.py \
 "
 
 SRC_URI_append_h9 += " \
@@ -48,16 +49,29 @@ KERNEL_IMAGEDEST = "tmp"
 KERNEL_IMAGETYPE = "uImage"
 KERNEL_OUTPUT = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 
-FILES_${KERNEL_PACKAGE_NAME}-image = "${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}"
+FILES_${KERNEL_PACKAGE_NAME}-image_h9 = "${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}"
+FILES_${KERNEL_PACKAGE_NAME}-image_i55plus = "${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}"
+FILES_${KERNEL_PACKAGE_NAME}-image = "${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ${KERNEL_IMAGEDEST}/findkerneldevice_cmdline.py"
 
 kernel_do_configure_prepend() {
 	install -d ${B}/usr
 	install -m 0644 ${WORKDIR}/initramfs-subdirboot.cpio.gz ${B}/
 }
 
+kernel_do_install_append_h9() {
+	install -d ${D}${KERNEL_IMAGEDEST}
+	install -m 0755 ${KERNEL_OUTPUT} ${D}${KERNEL_IMAGEDEST}
+}
+
+kernel_do_install_append_i55plus() {
+	install -d ${D}${KERNEL_IMAGEDEST}
+	install -m 0755 ${KERNEL_OUTPUT} ${D}${KERNEL_IMAGEDEST}
+}
+
 kernel_do_install_append() {
 	install -d ${D}${KERNEL_IMAGEDEST}
 	install -m 0755 ${KERNEL_OUTPUT} ${D}${KERNEL_IMAGEDEST}
+        install -m 0755 ${WORKDIR}/findkerneldevice_cmdline.py ${D}${KERNEL_IMAGEDEST}
 }
 
 pkg_postinst_kernel-image_h9() {
@@ -83,7 +97,8 @@ pkg_postinst_kernel-image_i55plus() {
 pkg_postinst_kernel-image() {
 	if [ "x$D" == "x" ]; then
 		if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ] ; then
-			dd if=/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} of=/dev/mmcblk0p19
+			python /${KERNEL_IMAGEDEST}/findkerneldevice_cmdline.py
+			dd if=/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} of=/dev/kernel
 		fi
 	fi
 	true
