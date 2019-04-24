@@ -16,7 +16,7 @@ if [ ! -f "/.resize-rootfs" ]; then
   fi
 fi
 if [ ! -f "/.resize-userdata" ]; then
-  if grep -q linuxrootfs[2-4] /proc/cmdline; then
+  if [ -f "/dev/block/by-name/userdata" ]; then
     echo "Resizing rootfs, Do not unplug power!..."
     resize2fs /dev/block/by-name/userdata
     touch "/.resize-userdata"

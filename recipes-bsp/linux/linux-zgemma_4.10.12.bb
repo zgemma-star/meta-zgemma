@@ -19,10 +19,10 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/linux-${PV}/COPYING;md5=d7810fab7487fb0aad
 # By default, kernel.bbclass modifies package names to allow multiple kernels
 # to be installed in parallel. We revert this change and rprovide the versioned
 # package names instead, to allow only one kernel to be installed.
-PKG_${KERNEL_PACKAGE_NAME}-base = "${KERNEL_PACKAGE_NAME}-base"
-PKG_${KERNEL_PACKAGE_NAME}-image = "${KERNEL_PACKAGE_NAME}-image"
-RPROVIDES_${KERNEL_PACKAGE_NAME}-base = "${KERNEL_PACKAGE_NAME}-${KERNEL_VERSION}"
-RPROVIDES_${KERNEL_PACKAGE_NAME}-image = "${KERNEL_PACKAGE_NAME}-image-${KERNEL_VERSION}"
+PKG_kernel-base = "kernel-base"
+PKG_kernel-image = "kernel-image"
+RPROVIDES_kernel-base = "kernel-${KERNEL_VERSION}"
+RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
 SRC_URI += "http://www.zgemma.org/downloads/linux-${PV}-${ARCH}.tar.gz;name=${ARCH} \
 	file://defconfig \
@@ -36,7 +36,7 @@ SRC_URI_append_mipsel = " \
 
 SRC_URI_append_arm = " \
 	file://export_pmpoweroffprepare.patch \
-	file://findkerneldevice.py \
+	file://findkerneldevice.sh \
 	file://reserve_dvb_adapter_0.patch \
 	file://blacklist_mmc0.patch \
 	file://initramfs-subdirboot.cpio.gz;unpack=0 \
@@ -48,20 +48,12 @@ export OS = "Linux"
 KERNEL_OBJECT_SUFFIX = "ko"
 KERNEL_IMAGEDEST = "tmp"
 
-FILES_${KERNEL_PACKAGE_NAME}-image = "${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}"
-
 # MIPSEL
-
 KERNEL_IMAGETYPE_mipsel = "vmlinux.gz"
 KERNEL_OUTPUT_mipsel = "vmlinux.gz"
 KERNEL_OUTPUT_DIR_mipsel = "."
 KERNEL_CONSOLE_mipsel = "null"
 SERIAL_CONSOLE_mipsel ?= ""
-
-kernel_do_install_append_mipsel() {
-        install -d ${D}${KERNEL_IMAGEDEST}
-        install -m 0755 ${KERNEL_OUTPUT} ${D}${KERNEL_IMAGEDEST}
-}
 
 pkg_postinst_kernel-image_mipsel() {
 	if [ "x$D" == "x" ]; then
@@ -74,11 +66,10 @@ pkg_postinst_kernel-image_mipsel() {
 }
 
 # ARM
-
 KERNEL_IMAGETYPE_arm = "zImage"
 KERNEL_OUTPUT_arm = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 
-FILES_${KERNEL_PACKAGE_NAME}-image_arm = "${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ${KERNEL_IMAGEDEST}/findkerneldevice.py"
+FILES_kernel-image_arm = "/${KERNEL_IMAGEDEST}/findkerneldevice.sh"
 
 kernel_do_configure_prepend_arm() {
 	install -d ${B}/usr
@@ -86,15 +77,14 @@ kernel_do_configure_prepend_arm() {
 }
 
 kernel_do_install_append_arm() {
-        install -d ${D}${KERNEL_IMAGEDEST}
-        install -m 0755 ${KERNEL_OUTPUT} ${D}${KERNEL_IMAGEDEST}
-        install -m 0755 ${WORKDIR}/findkerneldevice.py ${D}${KERNEL_IMAGEDEST}
+        install -d ${D}/${KERNEL_IMAGEDEST}
+        install -m 0755 ${WORKDIR}/findkerneldevice.sh ${D}/${KERNEL_IMAGEDEST}
 }
 
 pkg_postinst_kernel-image_arm() {
 	if [ "x$D" == "x" ]; then
 		if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ] ; then
-			python /${KERNEL_IMAGEDEST}/findkerneldevice.py
+			/${KERNEL_IMAGEDEST}/./findkerneldevice.sh
 			dd if=/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} of=/dev/kernel
 		fi
 	fi
