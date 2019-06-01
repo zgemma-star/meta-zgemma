@@ -5,10 +5,10 @@ PROVIDES = "virtual/blindscan-dvbc virtual/blindscan-dvbs"
 
 require zgemma-dvb-modules.inc
 
-SRC_URI[arm.md5sum] = "e33c49fb23d43b650b142d0169cd0d11"
-SRC_URI[arm.sha256sum] = "2d46cdf201ccea52687efe83cf21f6f5886b5ca44432e656dcfd9d411fbb76cf"
+SRC_URI[arm.md5sum] = "e3c5f19aaff7ccfbe7fc4d26628af3de"
+SRC_URI[arm.sha256sum] = "d66734f38dcf3694239e897c923115dc76f199b5e89cceba03bbb530e3f56f67"
 
-COMPATIBLE_MACHINE = "h9combo"
+COMPATIBLE_MACHINE = "h10"
 
 INITSCRIPT_NAME = "suspend"
 INITSCRIPT_PARAMS = "start 89 0 ."
