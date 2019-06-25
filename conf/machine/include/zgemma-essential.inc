@@ -22,10 +22,12 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	firmware-rtl8188eu \
 	firmware-rtl8192eu \
 	firmware-rtl8192cu \
+	firmware-rtl8723bu \
 	firmware-rtl8xxxu \
 	firmware-zd1211 \
 	\
-	rtl8192eu \
+	rtl8723bu \
+	rtl8822bu \
 	\
 	kernel-module-ath9k-htc \
 	kernel-module-carl9170 \
@@ -40,4 +42,6 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-rtl8192cu \
 	kernel-module-rtl8xxxu \
 	kernel-module-zd1211rw \
+	\
+	${@bb.utils.contains('MACHINE_FEATURES', 'bluetooth', 'kernel-module-btusb bluez5' , '', d)} 	\
 	"
