@@ -24,10 +24,13 @@ do_install() {
 	install -d ${D}${libdir}/hisilicon
 	install -m 0755 ${S}/hisilicon/* ${D}${libdir}/hisilicon
 	install -m 0755 ${S}/ffmpeg/* ${D}${libdir}/hisilicon
-	install -m 0755 ${S}/glibc/* ${D}${libdir}/hisilicon
+	if [ "${GLIBCVERSION}" = "2.25" ]; then
+		install -m 0755 ${S}/glibc/* ${D}${libdir}/hisilicon
+	else
+		install -d ${D}/lib
+		ln -sf /lib/ld-linux-armhf.so.3 ${D}${libdir}/hisilicon/ld-linux.so
+	fi
 }
-
-# ln -sf /lib/ld-linux-armhf.so.3 ${D}${libdir}/hisilicon/ld-linux.so
 
 do_package_qa() {
 }
