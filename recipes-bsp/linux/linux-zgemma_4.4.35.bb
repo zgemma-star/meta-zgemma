@@ -22,6 +22,8 @@ SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz
 	file://dib7000-linux_4.4.179.patch \
 	file://dvb-usb-linux_4.4.179.patch \
 	file://wifi-linux_4.4.183.patch \
+	file://0002-log2-give-up-on-gcc-constant-optimizations.patch \
+	file://0003-dont-mark-register-as-const.patch \
 	file://initramfs-subdirboot.cpio.gz;unpack=0 \
 	file://findkerneldevice.sh \
 "
