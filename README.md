@@ -44,9 +44,10 @@ Choose your build (Venus-eng)<br />
 make -j32 bigfish <br />
 
 *** Easy to know *** <br />
-Download all the packages before build: bitbake "image" -c fetchall <br />
+Download all the packages before build: bitbake "image" --runall=fetch <br />
 Build packages without brakedown on an error: bitbake -k "image" <br />
 Speed up image build: Use a PC with more Threads, Solid state disk, DDR Memory <br />
+Qt/Qtwebkit can cause strange build errors. When this happens reduce threads, enlarge swap or use a buildserver with => 24GB DDR3. <br>
 Set read/write access for map /opt : sudo chmod 755 -R /opt <br /> <br />
 Download direct the branch: -b "branch_name" <br />
 example: git clone -b release-6.2 https://github.com/OpenPLi/openpli-oe-core.git <br />
