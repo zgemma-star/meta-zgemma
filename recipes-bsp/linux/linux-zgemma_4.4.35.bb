@@ -10,7 +10,7 @@ COMPATIBLE_MACHINE = "(h10|h9|i55plus|h9combo)"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".7"
+MACHINE_KERNEL_PR_append = ".8"
 
 SRC_URI[arm.md5sum] = "ede25f1c2c060f1059529a2896cee5a9"
 SRC_URI[arm.sha256sum] = "ea4ba0433d252c18f38ff2f4dce4b70880e447e1cffdc2066d5a9b5f8098ae7e"
