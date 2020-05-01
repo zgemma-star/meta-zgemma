@@ -36,18 +36,18 @@ do_install_append() {
 FILES_${PN} += "${sysconfdir}/modules-load.d/_mali.conf"
 
 python() {
-	platform = d.getVar('MALI_DRIVER_PLATFORM', True)
-	if not platform:
-		platform = "devicetree"
-		TARGET_PLATFORM=" mali450"
+    platform = d.getVar('MALI_DRIVER_PLATFORM', True)
+    if not platform:
+        platform = "devicetree"
+        TARGET_PLATFORM=" mali450"
 
-	config = ["CONFIG_MALI_SHARED_INTERRUPTS=y",
-		"CONFIG_MALI400=m",
-		"CONFIG_MALI450=y",
-		"CONFIG_MALI_DVFS=y",
-		"CONFIG_GPU_AVS_ENABLE=y"]
+    config = ["CONFIG_MALI_SHARED_INTERRUPTS=y",
+        "CONFIG_MALI400=m",
+        "CONFIG_MALI450=y",
+        "CONFIG_MALI_DVFS=y",
+        "CONFIG_GPU_AVS_ENABLE=y"]
 
-	for c in config:
-		d.appendVar('MALI_FLAGS', '-D' + c + ' ')
-		d.appendVar('MALI_KCONFIG', c + ' ')
+    for c in config:
+        d.appendVar('MALI_FLAGS', '-D' + c + ' ')
+        d.appendVar('MALI_KCONFIG', c + ' ')
 }
