@@ -5,15 +5,15 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 VER ?= "${@bb.utils.contains('TARGET_ARCH', 'aarch64', '64' , '', d)}"
 
 KERNEL_RELEASE = "4.4.35"
-SRCDATE = "20181121"
-COMPATIBLE_MACHINE = "(h10|h9|i55plus|h9combo)"
+SRCDATE = "20200508"
+COMPATIBLE_MACHINE = "(h10|h9|i55plus|h9combo|hzero)"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".8"
+MACHINE_KERNEL_PR_append = ".1"
 
-SRC_URI[arm.md5sum] = "ede25f1c2c060f1059529a2896cee5a9"
-SRC_URI[arm.sha256sum] = "ea4ba0433d252c18f38ff2f4dce4b70880e447e1cffdc2066d5a9b5f8098ae7e"
+SRC_URI[arm.md5sum] = "f9e67e2d0ceab518510413f8f4315bc3"
+SRC_URI[arm.sha256sum] = "45ae717b966a74326fd7297d81b3a17fd5b3962b7704170682a615ca7cdec644"
 
 SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz;name=${ARCH} \
 	file://defconfig \
@@ -24,6 +24,8 @@ SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz
 	file://wifi-linux_4.4.183.patch \
 	file://0002-log2-give-up-on-gcc-constant-optimizations.patch \
 	file://0003-dont-mark-register-as-const.patch \
+	file://0004-linux-fix-buffer-size-warning-error.patch \
+	file://Backport_minimal_compiler_attributes_h_to_support_GCC_9.patch \
 	file://initramfs-subdirboot.cpio.gz;unpack=0 \
 	file://findkerneldevice.sh \
 "
@@ -53,6 +55,7 @@ KERNEL_OUTPUT = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
 
 
 FILES_${KERNEL_PACKAGE_NAME}-image_h9 = " "
+FILES_${KERNEL_PACKAGE_NAME}-image_hzero = " "
 FILES_${KERNEL_PACKAGE_NAME}-image_i5plus = " "
 FILES_${KERNEL_PACKAGE_NAME}-image = "/${KERNEL_IMAGEDEST}/findkerneldevice.sh"
 
@@ -82,6 +85,16 @@ pkg_postinst_kernel-image_h9() {
 }
 
 pkg_postinst_kernel-image_i55plus() {
+	if [ "x$D" == "x" ]; then
+		if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ] ; then
+			flash_eraseall /dev/${MTD_KERNEL}
+			nandwrite -p /dev/${MTD_KERNEL} /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}
+		fi
+	fi
+	true
+}
+
+pkg_postinst_kernel-image_hzero() {
 	if [ "x$D" == "x" ]; then
 		if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ] ; then
 			flash_eraseall /dev/${MTD_KERNEL}

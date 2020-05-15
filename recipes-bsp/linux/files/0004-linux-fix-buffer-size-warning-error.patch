@@ -1,0 +1,18 @@
+Subject: [PATCH] linux: fix buffer size warning/error
+with recent gcc versions
+---
+diff --git a/drivers/hisilicon/atags/tag-chiptrim.c b/drivers/hisilicon/atags/tag-chiptrim.c
+index 8da3dceb7..bcd47f7d0 100644
+--- a/drivers/hisilicon/atags/tag-chiptrim.c
++++ b/drivers/hisilicon/atags/tag-chiptrim.c
+@@ -59,7 +59,7 @@ static int __init parse_chiptrim(const struct tag *tag, void *fdt)
+ 	int ix;
+ 	int ret;
+ 	int node;
+-	char buf[12];
++	char buf[20];
+ 
+ 	if (tag->hdr.size <= (sizeof(struct tag_header) >> 2)) {
+ 		pr_err("%s: bad tag format.\n", __func__);
+-- 
+2.17.1
