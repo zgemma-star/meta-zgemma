@@ -1,7 +1,9 @@
 KV = "4.4.35"
-SRCDATE = "20200512"
+SRCDATE = "20200525"
 
 require zgemma-dvb-modules.inc
+
+RDEPENDS_${PN} += "libcrypto-compat"
 
 SRC_URI[mips.md5sum] = ""
 SRC_URI[mips.sha256sum] = ""

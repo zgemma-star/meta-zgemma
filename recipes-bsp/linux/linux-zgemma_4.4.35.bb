@@ -10,7 +10,7 @@ COMPATIBLE_MACHINE = "(h10|h9|i55plus|h9combo|hzero)"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".1"
+MACHINE_KERNEL_PR_append = ".2"
 
 SRC_URI[arm.md5sum] = "f9e67e2d0ceab518510413f8f4315bc3"
 SRC_URI[arm.sha256sum] = "45ae717b966a74326fd7297d81b3a17fd5b3962b7704170682a615ca7cdec644"
@@ -25,6 +25,9 @@ SRC_URI = "http://www.zgemma.org/downloads/linux-${PV}-${SRCDATE}-${ARCH}.tar.gz
 	file://0002-log2-give-up-on-gcc-constant-optimizations.patch \
 	file://0003-dont-mark-register-as-const.patch \
 	file://0004-linux-fix-buffer-size-warning-error.patch \
+	file://0005-xbox-one-tuner-4.4.patch \
+	file://0006-dvb-media-tda18250-support-for-new-silicon-tuner.patch \
+	file://0007-dvb-mn88472-staging.patch \
 	file://Backport_minimal_compiler_attributes_h_to_support_GCC_9.patch \
 	file://initramfs-subdirboot.cpio.gz;unpack=0 \
 	file://findkerneldevice.sh \
