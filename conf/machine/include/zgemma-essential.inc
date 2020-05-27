@@ -48,3 +48,7 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	\
 	${@bb.utils.contains('MACHINE_FEATURES', 'bluetooth', 'kernel-module-btusb bluez5' , '', d)} 	\
 	"
+
+OPTIONAL_EXTRA_DVBUSB_PACKAGES = "\
+	enigma2-plugin-drivers-ct2-usb-xbox-one-tuner \
+	"
