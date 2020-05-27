@@ -226,7 +226,7 @@ index b29d4894..d48a8a53 100644
 +		.num_device_descs = 1,
 +		.devices = {
 +			{ "Microsoft Xbox One Digital TV Tuner",
-+				{ &dib0700_usb_id_table[83], NULL },
++				{ &dib0700_usb_id_table[85], NULL },
 +				{ NULL },
 +			},
 +		},
