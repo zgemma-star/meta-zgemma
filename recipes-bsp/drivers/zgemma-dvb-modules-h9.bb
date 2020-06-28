@@ -1,12 +1,12 @@
 KV = "4.4.35"
-SRCDATE = "20200513"
+SRCDATE = "20200625"
 
 PROVIDES = "virtual/blindscan-dvbc virtual/blindscan-dvbs"
 
 require zgemma-dvb-modules.inc
 
-SRC_URI[arm.md5sum] = "4cedacb60a95353ad57a71111ec7dbdb"
-SRC_URI[arm.sha256sum] = "ee415c6902625f6a89c110386e27c7b619448bbf9a6d84f66d8322f4d3264be6"
+SRC_URI[arm.md5sum] = "d966f9cf487381f6fdb6fa31b10ac834"
+SRC_URI[arm.sha256sum] = "785747187cf1a8fd709b6199cec35b786624fe692417f6f3665f1609430165e4"
 
 COMPATIBLE_MACHINE = "h9"
 

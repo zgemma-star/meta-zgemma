@@ -10,9 +10,14 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-cdfs \
 	\
 	${@bb.utils.contains('MACHINE_FEATURES', 'v3d-nxpl', 'zgemma-v3ddriver-${MACHINE}' , '', d)} \
+	\
+	${@bb.utils.contains('MACHINE_FEATURES', 'bluetooth', 'kernel-module-btusb bluez5' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3798mv200 ciplus-helper', 'ciplus-helper-3798mv200' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3716mv430 ciplus-helper', 'ciplus-helper-3716mv430' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'emmc', 'resizerootfs partitions-by-name' , '', d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3798mv200', 'kernel-module-mali-3798mv200 zgemma-mali-3798mv200' , '', d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'wol', 'zgemma-ethwol' , '', d)} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'emmc', 'resizerootfs partitions-by-name' , '', d)} \
+	\
 	firmware-mt7601u \
 	firmware-rtl8188eu \
 	firmware-rtl8192eu \
@@ -27,8 +32,6 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-r8723au \
 	kernel-module-r8188eu \
 	kernel-module-rtl8xxxu \
-	\
-	${@bb.utils.contains('MACHINE_FEATURES', 'bluetooth', 'kernel-module-btusb bluez5' , '', d)} 	\
 	"
 
 OPTIONAL_EXTRA_DVBUSB_PACKAGES = "\
