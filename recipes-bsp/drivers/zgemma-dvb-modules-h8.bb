@@ -1,14 +1,12 @@
 KV = "4.4.35"
 SRCDATE = "20200716"
 
-PROVIDES = "virtual/blindscan-dvbc virtual/blindscan-dvbs"
-
 require zgemma-dvb-modules.inc
 
-SRC_URI[arm.md5sum] = "a3cbeb7f951592ca84d89a49e49d7ed9"
-SRC_URI[arm.sha256sum] = "0da57cef839d56f3588d442a40bfd894ec6250e530e4ca3523bfd247b223cf63"
+SRC_URI[arm.md5sum] = "96a10a8ff9b82930a24cbe9a3811ef03"
+SRC_URI[arm.sha256sum] = "52c2e3333993d813b5a82c230c71eef63a228222b575b2a322e7205f28a380b7"
 
-COMPATIBLE_MACHINE = "i55plus"
+COMPATIBLE_MACHINE = "h8"
 
 INITSCRIPT_NAME = "suspend"
 INITSCRIPT_PARAMS = "start 89 0 ."

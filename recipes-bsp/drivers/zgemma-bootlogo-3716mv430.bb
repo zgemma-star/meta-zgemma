@@ -5,5 +5,5 @@ require zgemma-bootlogo.inc
 SRC_URI[md5sum] = ""
 SRC_URI[sha256sum] = ""
 
-COMPATIBLE_MACHINE = "hzero"
+COMPATIBLE_MACHINE = "^hzero$|^h8$"
 
