@@ -1,12 +1,11 @@
 KV = "4.4.35"
-SRCDATE = "20200525"
+SRCDATE = "20200716"
 
 require zgemma-dvb-modules.inc
 
-RDEPENDS_${PN} += "libcrypto-compat"
+SRC_URI[arm.md5sum] = "3240f4857832a99b809f471744f30d73"
+SRC_URI[arm.sha256sum] = "3cf9672fc809d37f1320b65d49c1813accc24ec1fdccb623da2b2c0f20146f58"
 
-SRC_URI[mips.md5sum] = ""
-SRC_URI[mips.sha256sum] = ""
 
 COMPATIBLE_MACHINE = "hzero"
 

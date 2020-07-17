@@ -35,3 +35,6 @@ pkg_prerm_${PN}() {
 		fi
 	fi
 }
+
+RREPLACES_${PN} = "kernel-module-hi-play-4.4.35"
+RCONFLICTS_${PN} = "kernel-module-hi-play-4.4.35"
