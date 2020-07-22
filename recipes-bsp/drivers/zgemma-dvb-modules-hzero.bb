@@ -1,10 +1,10 @@
 KV = "4.4.35"
-SRCDATE = "20200716"
+SRCDATE = "20200720"
 
 require zgemma-dvb-modules.inc
 
-SRC_URI[arm.md5sum] = "3240f4857832a99b809f471744f30d73"
-SRC_URI[arm.sha256sum] = "3cf9672fc809d37f1320b65d49c1813accc24ec1fdccb623da2b2c0f20146f58"
+SRC_URI[arm.md5sum] = "ab2907291ac594390078373ac1cd1b38"
+SRC_URI[arm.sha256sum] = "c4d3ad0935c819e75767d6c54421c5b80c8272de2f36845e12154c811e21ae3a"
 
 
 COMPATIBLE_MACHINE = "hzero"
