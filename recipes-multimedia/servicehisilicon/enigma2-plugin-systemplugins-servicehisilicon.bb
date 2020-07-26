@@ -12,7 +12,8 @@ DEPENDS = "enigma2"
 RDEPENDS_${PN} = "enigma2"
 
 SRCREV = "${AUTOREV}"
-SRC_URI = "git://github.com/zgemma-star/servicehisilicon.git;branch=master"
+SERVICEHISILICON_BRANCH ?= "openpli"
+SRC_URI = "git://github.com/zgemma-star/servicehisilicon.git;branch=${SERVICEHISILICON_BRANCH}"
 
 S = "${WORKDIR}/git"
 
