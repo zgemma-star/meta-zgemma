@@ -48,6 +48,10 @@ IMAGEDIR ?= "zgemma"
 IMAGEDIRRECOVERY ?= "zgemma-recovery"
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 
+IMAGE_CMD_ubi_prepend = " \
+	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
+	"
+
 IMAGE_CMD_ubi_append = " \
 	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}; \
 	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.ubi ${IMGDEPLOYDIR}/${IMAGEDIR}/${MACHINE}/rootfs.ubi; \

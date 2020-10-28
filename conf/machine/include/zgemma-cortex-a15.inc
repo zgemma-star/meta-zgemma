@@ -41,6 +41,10 @@ IMAGEVERSION[vardepsexclude] = "DATE"
 IMAGEDIR ?= "zgemma/${MACHINE}"
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 
+IMAGE_CMD_prepend = "\
+	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
+	"
+
 IMAGE_CMD_zgemmc_append = "\
 	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}; \
 	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}.emmc.img ${IMGDEPLOYDIR}/${IMAGEDIR}/disk.img; \
