@@ -25,6 +25,7 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	firmware-rtl8xxxu \
 	\
 	kernel-module-8192eu \
+	kernel-module-8192fu \
 	kernel-module-8723bu \
 	kernel-module-88x2bu \
 	\

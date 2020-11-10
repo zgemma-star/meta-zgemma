@@ -41,7 +41,7 @@ IMAGEVERSION[vardepsexclude] = "DATE"
 IMAGEDIR ?= "zgemma/${MACHINE}"
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 
-IMAGE_CMD_prepend = "\
+IMAGE_CMD_prepend = " \
 	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
 	"
 
