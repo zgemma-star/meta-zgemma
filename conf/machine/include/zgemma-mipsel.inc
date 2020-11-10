@@ -42,6 +42,10 @@ IMAGEVERSION[vardepsexclude] = "DATE"
 IMAGEDIR ?= "zgemma/${MACHINE}"
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 
+IMAGE_CMD_ubi_prepend = " \
+	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
+	"
+
 IMAGE_CMD_ubi_append = " \
 	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}; \
 	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.ubi ${IMGDEPLOYDIR}/${IMAGEDIR}/rootfs.bin; \

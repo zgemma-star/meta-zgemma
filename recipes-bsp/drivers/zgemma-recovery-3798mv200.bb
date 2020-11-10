@@ -1,8 +1,8 @@
-SRCDATE = "20200508"
+SRCDATE = "20201104"
 
 require zgemma-recovery.inc
 
-SRC_URI[md5sum] = "ba8de8faebeb5a93d6520b59d182f83c"
-SRC_URI[sha256sum] = "84bbadef64fc47ca111645c6d9f4ddbca5b8b8eec21866518733d690f92e0046"
+SRC_URI[md5sum] = "0ae2d3c8be86fa6c807a517c4ea6dbe0"
+SRC_URI[sha256sum] = "08dcf21d5bada7b134b43bfdaa15204468f19d2cfd2e3df19695094e654d4dab"
 
-COMPATIBLE_MACHINE = "^h9combo$|^h10$"
+COMPATIBLE_MACHINE = "^h9se$|^h9combo$|^h9combose$|^h10$|^i55se$"
