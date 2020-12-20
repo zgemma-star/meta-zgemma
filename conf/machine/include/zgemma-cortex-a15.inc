@@ -34,7 +34,7 @@ MACHINE_EXTRA_RRECOMMENDS = " \
 
 DVBMEDIASINK_CONFIG = "--with-h265 --with-vb8 --with-vb9 --with-wma --with-wmv --with-pcm --with-dts --with-eac3"
 
-MACHINE_FEATURES += "alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
+MACHINE_FEATURES += "alsa usbhost wlan 3dtv switchoff osdposition hdmicec AV_JACK HDMI"
 
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
@@ -57,3 +57,12 @@ IMAGE_CMD_zgemmc_append = "\
 	zip ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_multiboot_ofgwrite.zip ${IMAGEDIR}/imageversion ${IMAGEDIR}/kernel.bin ${IMAGEDIR}/rootfs.tar.bz2; \
 	rm -Rf ${IMAGEDIR}; \
 "
+
+MTD_BOOTFS = "mmcblk0p1"
+MTD_ROOTFS = "mmcblk0p3"
+MTD_KERNEL = "mmcblk0p2"
+KERNEL_FILE = "kernel.bin"
+ROOTFS_FILE = "rootfs.tar.bz2"
+MTD_BLACK  = "mmcblk0"
+
+SOC_FAMILY = "bcm7251s"
