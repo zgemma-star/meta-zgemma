@@ -21,8 +21,8 @@ IMAGE_CMD_zgemmafastboot8gb () {
 	mkfs.ext4 -F ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.ext4 -d ${WORKDIR}/rootfs
 	dd if=/dev/zero of=${WORKDIR}/bootoptions.img bs=1024 count=${BOOTOPTIONS_PARTITION_SIZE}
 	mkfs.msdos -S 512 ${WORKDIR}/bootoptions.img
-	echo "bootcmd=setenv vfd_msg andr;setenv bootargs \$(bootargs) \$(bootargs_common); run bootcmd_android; run bootcmd_fallback" > ${WORKDIR}/STARTUP
-	echo "bootargs=androidboot.hardware=bigfish androidboot.serialno=0123456789 androidboot.selinux=enforcing hbcomp=/dev/block/mmcblk0p13 root=/dev/mmcblk0p13 androidboot.dtbo_idx=0 init=/init skip_initramfs" >> ${WORKDIR}/STARTUP
+	echo "bootcmd=setenv notee y; setenv bootargs \$(bootargs) \$(bootargs_common); mmc read 0 0x1000000 0x3BD000 0x8000; bootm 0x1000000; run bootcmd_fallback" > ${WORKDIR}/STARTUP
+	echo "bootargs=root=/dev/mmcblk0p23 rootsubdir=linuxrootfs1 rootfstype=ext4 kernel=/dev/mmcblk0p19" >> ${WORKDIR}/STARTUP
 	echo "bootcmd=setenv vfd_msg andr;setenv bootargs \$(bootargs) \$(bootargs_common); run bootcmd_android; run bootcmd_fallback" > ${WORKDIR}/STARTUP_ANDROID
 	echo "bootargs=androidboot.hardware=bigfish androidboot.serialno=0123456789 androidboot.selinux=enforcing hbcomp=/dev/block/mmcblk0p13 root=/dev/mmcblk0p13 androidboot.dtbo_idx=0 init=/init skip_initramfs" >> ${WORKDIR}/STARTUP_ANDROID
 	echo "bootcmd=setenv vfd_msg andr;setenv bootargs \$(bootargs) \$(bootargs_common); run bootcmd_android; run bootcmd_fallback" > ${WORKDIR}/STARTUP_ANDROID_DISABLE_LINUXSE
