@@ -1,8 +1,8 @@
-SRCDATE = "20200818"
+SRCDATE = "20210914"
 
 require zgemma-libs.inc
 
-SRC_URI[md5sum] = "64775b4a39f2779b23e1919bfdf634c4"
-SRC_URI[sha256sum] = "21eef199f0547173ef3cbcb0a08f4dab5c430a17ef94516bf8e87e6273b877ba"
+SRC_URI[md5sum] = "dce11616c14904fc6a0a27922eb94233"
+SRC_URI[sha256sum] = "f2bb86baf96380651cff271d324e4084f97ba35d534973036199d0ccff9dfeb4"
 
 COMPATIBLE_MACHINE = "^hzero$|^h8$"
