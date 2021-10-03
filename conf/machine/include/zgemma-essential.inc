@@ -12,7 +12,7 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-cdfs \
 	\
-	${@bb.utils.contains('MACHINE_FEATURES', 'v3d-nxpl', 'zgemma-v3ddriver-${MACHINE}' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'v3d-cortexa15', 'zgemma-v3ddriver-${MACHINE}' , '', d)} \
 	\
 	${@bb.utils.contains('MACHINE_FEATURES', 'bluetooth', 'kernel-module-btusb bluez5' , '', d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3798mv200 ciplus-helper', 'ciplus-helper-3798mv200' , '', d)} \
