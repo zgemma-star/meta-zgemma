@@ -24,7 +24,6 @@ require conf/machine/include/tune-mips32.inc
 require conf/machine/include/zgemma-essential.inc
 
 PACKAGECONFIG_GL_pn-qtbase = " gles2 linuxfb"
-EXTRA_OECONF_append_pn-kodi = " --with-gpu=v3d"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
 	gst-plugin-dvbmediasink \
