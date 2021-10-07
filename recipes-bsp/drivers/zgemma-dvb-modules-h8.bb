@@ -3,8 +3,8 @@ SRCDATE = "20210816"
 
 require zgemma-dvb-modules.inc
 
-SRC_URI[md5sum] = "76d1d9868f660d6c16610ff23f899a3d"
-SRC_URI[sha256sum] = "5e60bdb68cbee59923ee4618270923741b27d64370c59f7ae84662dd3d74f4c6"
+SRC_URI[arm.md5sum] = "76d1d9868f660d6c16610ff23f899a3d"
+SRC_URI[arm.sha256sum] = "5e60bdb68cbee59923ee4618270923741b27d64370c59f7ae84662dd3d74f4c6"
 
 COMPATIBLE_MACHINE = "h8"
 
