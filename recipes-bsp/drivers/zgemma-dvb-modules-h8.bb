@@ -1,10 +1,10 @@
 KV = "4.4.35"
-SRCDATE = "20201118"
+SRCDATE = "20210816"
 
-require zgemma-dvb-himodules.inc
+require zgemma-dvb-modules.inc
 
-SRC_URI[arm.md5sum] = "da99936ca67e851f754e580eb3703252"
-SRC_URI[arm.sha256sum] = "766c97809e3ccfbd7d4f9e57c91797ee1b6c518ff4d9b0016049b6948d66fc1f"
+SRC_URI[arm.md5sum] = "76d1d9868f660d6c16610ff23f899a3d"
+SRC_URI[arm.sha256sum] = "5e60bdb68cbee59923ee4618270923741b27d64370c59f7ae84662dd3d74f4c6"
 
 COMPATIBLE_MACHINE = "h8"
 
@@ -25,6 +25,7 @@ if [ "\$runlevel" != "0" ] ; then
 	exit 0
 fi
 
+mount -t proc proc /proc
 mount -t sysfs sys /sys
 
 /usr/bin/turnoff_power

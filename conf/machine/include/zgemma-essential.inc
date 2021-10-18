@@ -6,7 +6,7 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
 	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3798mv310', 'zgemma-libs-3798mv310 zgemma-param-3798mv310 zgemma-bootargs-3798mv310 zgemma-bootlogo-3798mv310 zgemma-fastboot-3798mv310' , '', d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3798mv310 emmc', 'zgemma-recovery-3798mv310' , '', d)} \
 	\
-	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3716mv430', 'zgemma-libs-3716mv430 zgemma-param-3716mv430 zgemma-bootargs-3716mv430 zgemma-bootlogo-3716mv430 zgemma-fastboot-3716mv430' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'hisil-3716mv430', 'zgemma-libs-3716mv430 zgemma-param-3716mv430 zgemma-bootargs-3716mv430 zgemma-bootlogo-3716mv430 zgemma-fastboot-3716mv430 zgemma-recovery-3716mv430' , '', d)} \
 	"
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
