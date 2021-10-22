@@ -9,7 +9,10 @@ inherit pkgconfig
 
 PV = "1.0.0"
 
-SRC_URI = "file://mkyaffs2utils.tar.bz2"
+SRC_URI = " \
+        file://mkyaffs2utils.tar.bz2 \
+        file://0001-file-offset-bits.patch \
+        "
 
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
