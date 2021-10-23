@@ -23,10 +23,6 @@ require conf/machine/include/zgemma-essential.inc
 PACKAGECONFIG_GL_pn-qtbase = " "
 PACKAGECONFIG_append_pn-qtbase += " gles2 linuxfb"
 
-# Kodi
-EXTRA_OECONF_append_pn-kodi = " --with-gpu=v3d"
-EXTRA_OECMAKE_append_pn-kodi += " -DWITH_V3D=nxpl"
-
 MACHINE_EXTRA_RRECOMMENDS = " \
 	gst-plugin-dvbmediasink \
 	ntfs-3g \
