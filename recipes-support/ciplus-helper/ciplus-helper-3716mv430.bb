@@ -1,6 +1,6 @@
-SRCDATE = "20200625"
+SRCDATE = "20211026"
 
 require ciplus-helper.inc
 
-SRC_URI[md5sum] = "4a1a257a713c8308719b2ebb749f3103"
-SRC_URI[sha256sum] = "cd7d86aa3e205152754ae8bb35fa40d761a92d6f02c47adf40cc915af0f97e7e"
+SRC_URI[md5sum] = "8938ae317ae2da83516df0bb23db43cf"
+SRC_URI[sha256sum] = "cc55c6e0b67ea3fe947a25bd57ff48c42102563c61af6fccae60b2d22c06b24b"
