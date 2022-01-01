@@ -15,6 +15,7 @@ SRCREV = "${AUTOREV}"
 SERVICEHISILICON_BRANCH ?= "openpli"
 SRC_URI = "git://github.com/zgemma-star/servicehisilicon.git;branch=${SERVICEHISILICON_BRANCH} \
            file://add-c-api.patch \
+           file://use-absolute-import-path.patch \
 "
 
 S = "${WORKDIR}/git"

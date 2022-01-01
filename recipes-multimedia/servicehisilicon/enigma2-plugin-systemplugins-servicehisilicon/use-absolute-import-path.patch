@@ -1,0 +1,13 @@
+diff --git a/plugin/plugin.py b/plugin/plugin.py
+index 75d39a9..f6ffed3 100644
+--- a/plugin/plugin.py
++++ b/plugin/plugin.py
+@@ -1,7 +1,7 @@
+ from Plugins.Plugin import PluginDescriptor
+ 
+ def autostart(reason, **kwargs):
+-	import servicehisilicon
++	from Plugins.SystemPlugins.ServiceHisilicon import servicehisilicon
+ 
+ def Plugins(**kwargs):
+ 	return [
