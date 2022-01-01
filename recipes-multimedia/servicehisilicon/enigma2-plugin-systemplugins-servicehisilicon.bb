@@ -17,7 +17,7 @@ SRC_URI = "git://github.com/zgemma-star/servicehisilicon.git;branch=${SERVICEHIS
 
 S = "${WORKDIR}/git"
 
-inherit autotools gitpkgv python3native pkgconfig
+inherit autotools gitpkgv python3native pkgconfig python3targetconfig
 
 PV = "git${SRCPV}"
 PKGV = "git${GITPKGV}"
