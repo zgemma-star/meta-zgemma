@@ -32,14 +32,9 @@ EXTRA_OECONF = "\
 	"
 
 do_install_append() {
-	rm ${D}${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/*.pyc
+	rm ${D}${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/*.py
 }
 
 FILES_${PN} = "\
-	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/*.pyo \
-	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/servicehisilicon.so"
-
-FILES_${PN}-dev = "\
 	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/*.py \
-	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/servicehisilicon.la"
-
+	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/servicehisilicon.so"
