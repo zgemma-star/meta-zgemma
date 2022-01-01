@@ -13,7 +13,9 @@ RDEPENDS_${PN} = "enigma2"
 
 SRCREV = "${AUTOREV}"
 SERVICEHISILICON_BRANCH ?= "openpli"
-SRC_URI = "git://github.com/zgemma-star/servicehisilicon.git;branch=${SERVICEHISILICON_BRANCH}"
+SRC_URI = "git://github.com/zgemma-star/servicehisilicon.git;branch=${SERVICEHISILICON_BRANCH} \
+           file://add-c-api.patch \
+"
 
 S = "${WORKDIR}/git"
 
