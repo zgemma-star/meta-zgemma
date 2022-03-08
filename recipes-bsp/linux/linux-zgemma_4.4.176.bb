@@ -11,7 +11,7 @@ COMPATIBLE_MACHINE = "^h11$|^h8$"
 inherit kernel machine_kernel_pr
 
 MACHINE_KERNEL_PR = "r0"
-MACHINE_KERNEL_PR_append = ".3"
+MACHINE_KERNEL_PR_append = ".6"
 
 SRC_URI[md5sum] = "261fd4b3d11cf2e593abb1706033fe1c"
 SRC_URI[sha256sum] = "6448ea7093cea5e30fcd9ceea357eee3ad98d1b3e7a2367a41fae990f39468e8"
@@ -20,6 +20,7 @@ SRC_URI = "http://www.zgemma.org/downloads/linux-${KERNEL_RELEASE}-${SRCDATE}-ar
 	file://defconfig \
 	file://initramfs-subdirboot.cpio.gz;unpack=0 \
 	file://findkerneldevice.sh \
+	file://0101-hi3716mv430-dts-move-aon-gpio7-gpio5.patch \
 "
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
