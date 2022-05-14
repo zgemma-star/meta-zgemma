@@ -42,3 +42,8 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 OPTIONAL_EXTRA_DVBUSB_PACKAGES = "\
 	enigma2-plugin-drivers-ct2-usb-xbox-one-tuner \
 	"
+
+BOX_BRAND = "airdigital"
+
+RCNAME ?= "zgemma3"
+RCIDNUM ?= "1"

@@ -37,7 +37,7 @@ MACHINE_EXTRA_RRECOMMENDS = " \
 	ntfs-3g \
 	"
 
-MACHINE_FEATURES += " alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
+MACHINE_FEATURES += " alsa usbhost wlan 3dtv switchoff osdposition hdmicec HDMI"
 
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
@@ -103,3 +103,7 @@ IMAGE_CMD_zgemmafastboot8gb_append = " \
 	cd ..; \
 	rm -Rf ${IMAGEDIR}; \
 	"
+
+SOC_FAMILY = "hisi3798mv200"
+
+STB_PLATFORM = "zgemmahisi3798mv200"

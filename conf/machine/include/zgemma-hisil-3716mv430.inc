@@ -28,7 +28,7 @@ MACHINE_EXTRA_RRECOMMENDS = " \
 	ntfs-3g \
 "
 
-MACHINE_FEATURES += " alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
+MACHINE_FEATURES += " alsa usbhost wlan 3dtv switchoff osdposition hdmicec HDMI"
 
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
@@ -66,3 +66,12 @@ IMAGE_CMD_ubi_append = " \
 	cd ..; \
 	rm -Rf ${IMAGEDIR}; \
 	"
+
+MTD_KERNEL = "mtd9"
+MTD_ROOTFS = "mtd10"
+KERNEL_FILE = "uImage"
+ROOTFS_FILE = "rootfs.ubi"
+
+STB_PLATFORM = "zgemmahisi3716mv430"
+
+SOC_FAMILY = "hisi3716mv430"
