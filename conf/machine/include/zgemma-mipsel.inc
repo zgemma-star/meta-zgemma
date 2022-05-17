@@ -8,7 +8,11 @@ PREFERRED_VERSION_linux-zgemma = "4.10.12"
 #Provider
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-zgemma"
 PREFERRED_PROVIDER_virtual/egl ?= "zgemma-v3ddriver-${MACHINE}"
+PREFERRED_PROVIDER_virtual/libgles1 ?= "zgemma-v3ddriver-${MACHINE}"
 PREFERRED_PROVIDER_virtual/libgles2 ?= "zgemma-v3ddriver-${MACHINE}"
+PREFERRED_PROVIDER_virtual/libgbm ?= "zgemma-v3ddriver-${MACHINE}"
+PREFERRED_PROVIDER_virtual/libgl ?= "mesa"
+PREFERRED_PROVIDER_virtual/mesa ?= "mesa"
 
 IMAGE_FSTYPES += "ubi"
 UBI_VOLNAME = "rootfs"
@@ -20,7 +24,6 @@ require conf/machine/include/tune-mips32.inc
 require conf/machine/include/zgemma-essential.inc
 
 PACKAGECONFIG_GL_pn-qtbase = " gles2 linuxfb"
-EXTRA_OECONF_append_pn-kodi = " --with-gpu=v3d"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
 	gst-plugin-dvbmediasink \
@@ -37,6 +40,11 @@ IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
 IMAGEDIR ?= "zgemma/${MACHINE}"
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
+
+IMAGE_CMD_ubifs_prepend = " \
+	rm -Rf ${IMAGE_ROOTFS}/boot/*; \
+	rm -Rf ${IMAGE_ROOTFS}/tmp/*; \
+	"
 
 IMAGE_CMD_ubi_append = " \
 	mkdir -p ${IMGDEPLOYDIR}/${IMAGEDIR}; \

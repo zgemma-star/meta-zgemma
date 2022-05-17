@@ -1,8 +1,8 @@
-SRCDATE = "20181107"
+SRCDATE = "20200916"
 
 require zgemma-bootlogo.inc
 
-SRC_URI[md5sum] = "95121079f61fb7504a015d0c7e802d99"
-SRC_URI[sha256sum] = "fdb0c969777fccdfd22375701507499e8dffb9f49b2d59e6e9de4cb7b40cc8f8"
+SRC_URI[md5sum] = "a4be4429300800b3901c85ef8af95037"
+SRC_URI[sha256sum] = "56acac6f3f23a7769a6f489658d14e78c7803b707fb6712b15c02cd7f1399671"
 
-COMPATIBLE_MACHINE = "h10|h9|i55plus|h9combo"
+COMPATIBLE_MACHINE = "^h9$|^h9se$|^h9combo$|^h9combose$|^h10$|^i55plus$|^i55se$"

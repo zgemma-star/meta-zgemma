@@ -1,8 +1,8 @@
-SRCDATE = "20181107"
+SRCDATE = "20200916"
 
 require zgemma-bootargs.inc
 
-SRC_URI[md5sum] = "16c4c008bc16f01ba1225c4be83114f2"
-SRC_URI[sha256sum] = "7e73f4bc8e1cc41811b2322ea08a6a85c058acd8550938fc2715da443d98dd20"
+SRC_URI[md5sum] = "378622e172cb6c70d50c988badf30a04"
+SRC_URI[sha256sum] = "cfe68f0a7248af35f42ea74f13b2fdbbec7b9682940f9725da914c44f5a05f5f"
 
-COMPATIBLE_MACHINE = "h10|h9|i55plus|h9combo"
+COMPATIBLE_MACHINE = "^h9$|^h9se$|^h9combo$|^h9combose$|^h10$|^i55plus$|^i55se$"

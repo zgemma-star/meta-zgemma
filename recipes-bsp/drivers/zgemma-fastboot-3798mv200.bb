@@ -1,8 +1,8 @@
-SRCDATE = "20181107"
+SRCDATE = "20200916"
 
 require zgemma-fastboot.inc
 
-SRC_URI[md5sum] = "2fa81338f15fe1c068bfcd0343f8e9f6"
-SRC_URI[sha256sum] = "18c9716b7c7bddf573622ed6da4869a099d862d7490df7fdb00f9b6f8f918862"
+SRC_URI[md5sum] = "ec44347531c17802e9b0346121e6ea13"
+SRC_URI[sha256sum] = "ba7caebea61a512f598ac60ceafa151252e73452e02aaf7a617282b4d2d8e7de"
 
-COMPATIBLE_MACHINE = "h10|h9|i55plus|h9combo"
+COMPATIBLE_MACHINE = "^h9$|^h9se$|^h9combo$|^h9combose$|^h10$|^i55plus$|^i55se$"

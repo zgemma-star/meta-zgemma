@@ -1,29 +1,64 @@
 inherit image_types
 
-IMAGE_TYPEDEP_fastboot8gb = "ext4"
+IMAGE_ROOTFS = "${WORKDIR}/rootfs/linuxrootfs1"
+BOOTOPTIONS_PARTITION_SIZE = "2048"
+IMAGE_ROOTFS_SIZE = "614400"
 
-BOOTOPTIONS_PARTITION_SIZE = "4096"
-IMAGE_ROOTFS_SIZE = "1048576"
-
-do_image_fastboot8gb[depends] = " \
+do_image_zgemmafastboot8gb[depends] = " \
+	e2fsprogs-native:do_populate_sysroot \
 	android-tools-native:do_populate_sysroot \
 	dosfstools-native:do_populate_sysroot \
 	mtools-native:do_populate_sysroot \
 	"
 
-IMAGE_CMD_fastboot8gb () {
-    dd if=/dev/zero of=${WORKDIR}/bootoptions.img bs=1024 count=${BOOTOPTIONS_PARTITION_SIZE}
-    mkfs.msdos -S 512 ${WORKDIR}/bootoptions.img
-    echo "bootcmd=mmc read 0 0x1000000 0x53D000 0x8000; bootm 0x1000000 bootargs=console=ttyAMA0,115200 root=/dev/mmcblk0p21 rootfstype=ext4" > ${WORKDIR}/STARTUP
-    echo "bootcmd=mmc read 0 0x3F000000 0x70000 0x4000; bootm 0x3F000000; mmc read 0 0x1FFBFC0 0x52000 0xC800; bootargs=androidboot.selinux=enforcing androidboot.serialno=0123456789 console=ttyAMA0,115200" > ${WORKDIR}/STARTUP_RED
-    echo "bootcmd=mmc read 0 0x1000000 0x53D000 0x8000; bootm 0x1000000 bootargs=console=ttyAMA0,115200 root=/dev/mmcblk0p21 rootfstype=ext4" > ${WORKDIR}/STARTUP_GREEN
-    echo "bootcmd=mmc read 0 0x1000000 0x53D000 0x8000; bootm 0x1000000 bootargs=console=ttyAMA0,115200 root=/dev/mmcblk0p21 rootfstype=ext4" > ${WORKDIR}/STARTUP_YELLOW
-    echo "bootcmd=mmc read 0 0x1000000 0x53D000 0x8000; bootm 0x1000000 bootargs=console=ttyAMA0,115200 root=/dev/mmcblk0p21 rootfstype=ext4" > ${WORKDIR}/STARTUP_BLUE
-    mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP ::
-    mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_RED ::
-    mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_GREEN ::
-    mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_YELLOW ::
-    mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_BLUE ::
-    cp ${WORKDIR}/bootoptions.img ${IMGDEPLOYDIR}/bootoptions.img
-    ext2simg -zv ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.ext4 ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.fastboot8gb.gz
+IMAGE_CMD_zgemmafastboot8gb () {
+	eval local COUNT=\"0\"
+	eval local MIN_COUNT=\"60\"
+	if [ $ROOTFS_SIZE -lt $MIN_COUNT ]; then
+		eval COUNT=\"$MIN_COUNT\"
+	fi
+	dd if=/dev/zero of=${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.ext4 seek=$ROOTFS_SIZE count=$COUNT bs=1024
+	mkfs.ext4 -F ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.ext4 -d ${WORKDIR}/rootfs
+	dd if=/dev/zero of=${WORKDIR}/bootoptions.img bs=1024 count=${BOOTOPTIONS_PARTITION_SIZE}
+	mkfs.msdos -S 512 ${WORKDIR}/bootoptions.img
+	echo "bootcmd=setenv notee y; setenv bootargs \$(bootargs) \$(bootargs_common); mmc read 0 0x1000000 0x3BD000 0x8000; bootm 0x1000000; run bootcmd_fallback" > ${WORKDIR}/STARTUP
+	echo "bootargs=root=/dev/mmcblk0p23 rootsubdir=linuxrootfs1 rootfstype=ext4 kernel=/dev/mmcblk0p19" >> ${WORKDIR}/STARTUP
+	echo "bootcmd=setenv vfd_msg andr;setenv bootargs \$(bootargs) \$(bootargs_common); run bootcmd_android; run bootcmd_fallback" > ${WORKDIR}/STARTUP_ANDROID
+	echo "bootargs=androidboot.hardware=bigfish androidboot.serialno=0123456789 androidboot.selinux=enforcing hbcomp=/dev/block/mmcblk0p13 root=/dev/mmcblk0p13 androidboot.dtbo_idx=0 init=/init skip_initramfs" >> ${WORKDIR}/STARTUP_ANDROID
+	echo "bootcmd=setenv vfd_msg andr;setenv bootargs \$(bootargs) \$(bootargs_common); run bootcmd_android; run bootcmd_fallback" > ${WORKDIR}/STARTUP_ANDROID_DISABLE_LINUXSE
+	echo "bootargs=androidboot.hardware=bigfish androidboot.serialno=0123456789 androidboot.selinux=disable hbcomp=/dev/block/mmcblk0p13 root=/dev/mmcblk0p13 androidboot.dtbo_idx=0 init=/init skip_initramfs" >> ${WORKDIR}/STARTUP_ANDROID_DISABLE_LINUXSE
+	echo "bootcmd=setenv notee y; setenv bootargs \$(bootargs) \$(bootargs_common); mmc read 0 0x1000000 0x3BD000 0x8000; bootm 0x1000000; run bootcmd_fallback" > ${WORKDIR}/STARTUP_LINUX_1
+	echo "bootargs=root=/dev/mmcblk0p23 rootsubdir=linuxrootfs1 rootfstype=ext4 kernel=/dev/mmcblk0p19" >> ${WORKDIR}/STARTUP_LINUX_1
+	echo "bootcmd=setenv notee y; setenv bootargs \$(bootargs) \$(bootargs_common); mmc read 0 0x1000000 0x3C5000 0x8000; bootm 0x1000000; run bootcmd_fallback" > ${WORKDIR}/STARTUP_LINUX_2
+	echo "bootargs=root=/dev/mmcblk0p23 rootsubdir=linuxrootfs2 rootfstype=ext4 kernel=/dev/mmcblk0p20" >> ${WORKDIR}/STARTUP_LINUX_2
+	echo "bootcmd=setenv notee y; setenv bootargs \$(bootargs) \$(bootargs_common); mmc read 0 0x1000000 0x3CD000 0x8000; bootm 0x1000000; run bootcmd_fallback" > ${WORKDIR}/STARTUP_LINUX_3
+	echo "bootargs=root=/dev/mmcblk0p23 rootsubdir=linuxrootfs3 rootfstype=ext4 kernel=/dev/mmcblk0p21" >> ${WORKDIR}/STARTUP_LINUX_3
+	echo "bootcmd=setenv notee y; setenv bootargs \$(bootargs) \$(bootargs_common); mmc read 0 0x1000000 0x3D5000 0x8000; bootm 0x1000000; run bootcmd_fallback" > ${WORKDIR}/STARTUP_LINUX_4
+	echo "bootargs=root=/dev/mmcblk0p23 rootsubdir=linuxrootfs4 rootfstype=ext4 kernel=/dev/mmcblk0p22" >> ${WORKDIR}/STARTUP_LINUX_4
+	echo "bootcmd=setenv notee y; setenv bootargs \$(bootargs_common); mmc read 0 0x1000000 0x1000 0x9000; bootm 0x1000000" > ${WORKDIR}/STARTUP_RECOVERY
+	echo "imageurl https://raw.githubusercontent.com/oe-alliance/bootmenu/master/${MACHINE}/images" > ${WORKDIR}/bootmenu.conf
+	echo "updateurl http://updateurl.redirectme.net/cgi-bin/index.py" >> ${WORKDIR}/bootmenu.conf
+	echo "# " >> ${WORKDIR}/bootmenu.conf
+	echo "iface eth0" >> ${WORKDIR}/bootmenu.conf
+	echo "dhcp yes" >> ${WORKDIR}/bootmenu.conf
+	echo "# " >> ${WORKDIR}/bootmenu.conf
+	echo "# for static config leave out 'dhcp yes' and add the following settings:" >> ${WORKDIR}/bootmenu.conf
+	echo "# " >> ${WORKDIR}/bootmenu.conf
+	echo "#ip 192.168.1.10" >> ${WORKDIR}/bootmenu.conf
+	echo "#netmask 255.255.255.0" >> ${WORKDIR}/bootmenu.conf
+	echo "#gateway 192.168.1.1" >> ${WORKDIR}/bootmenu.conf
+	echo "#dns 192.168.1.1" >> ${WORKDIR}/bootmenu.conf
+	mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP ::
+	mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_ANDROID ::
+	mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_ANDROID_DISABLE_LINUXSE ::
+	mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_LINUX_1 ::
+	mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_LINUX_2 ::
+	mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_LINUX_3 ::
+	mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_LINUX_4 ::
+	mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/STARTUP_RECOVERY ::
+	mcopy -i ${WORKDIR}/bootoptions.img -v ${WORKDIR}/bootmenu.conf ::
+	cp ${WORKDIR}/bootoptions.img ${IMGDEPLOYDIR}/bootoptions.img
+	echo boot-recovery > ${WORKDIR}/misc-boot.img
+	cp ${WORKDIR}/misc-boot.img ${IMGDEPLOYDIR}/misc-boot.img
+	ext2simg ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.ext4 ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.userdata.ext4
 }

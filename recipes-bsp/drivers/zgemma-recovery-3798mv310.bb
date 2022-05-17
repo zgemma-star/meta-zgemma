@@ -1,0 +1,8 @@
+SRCDATE = "20210727"
+
+require zgemma-recovery.inc
+
+SRC_URI[md5sum] = "0d05b18ff462785acc5d9a38f3665507"
+SRC_URI[sha256sum] = "76a51bae6ed28ec5205661e1b096cadcf7971d599ea613f4145087c0583dd575"
+
+COMPATIBLE_MACHINE = "^h11$"
