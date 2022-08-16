@@ -37,7 +37,7 @@ MACHINE_EXTRA_RRECOMMENDS = " \
 	ntfs-3g \
 	"
 
-MACHINE_FEATURES += " alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
+MACHINE_FEATURES += " alsa usbhost wlan 3dtv switchoff osdposition hdmicec qtevent1"
 
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
 IMAGEVERSION[vardepsexclude] = "DATE"
